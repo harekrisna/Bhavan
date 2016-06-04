@@ -1,0 +1,15 @@
+<div class="group-header">
+{if $group_by == 'audio_interpret_id'}
+	<img src="{$basePath}/images/interpret_avatars/{$group->audio_interpret->image}" />
+	{$group->audio_interpret->title}
+{elseif $group_by == 'audio_year'}
+	<div n:class="$group->audio_year >= 2000 ? 'new', $group->audio_year < 2000 ? 'old'">{$group->audio_year}</div>
+	Přednášky z roku {$group->audio_year}
+{elseif $group_by == 'book_id'}
+	{if isset($group)}
+	<img src="{$basePath}/images/books/{$group->book_id}.jpg" />{$group->book->title}
+	{else}
+	<img src="{$basePath}/images/books/unclasified.jpg" />Nezařazené
+	{/if}
+{/if}
+</div>

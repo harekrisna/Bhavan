@@ -1,0 +1,155 @@
+{block divider}{/block}
+{block content}
+	<div id="slideshow" class="slideshow">
+	    <div u="slides">
+	        <div n:foreach="$slides as $slide" idle="{$slide->delay * 1000}">
+	        	<a href="{$slide->target}"><img u="image" src="{$basePath}/images/slides/{$slide->file}" /></a>
+	        </div>
+	    </div>
+        <div u="navigator" class="slider-bullets">
+            <div u="prototype"></div>
+        </div>
+    </div>
+    {if $news_count > 0}
+    <section id="news" n:class="$max_group_news == 2 ? slim, $max_group_news == 1 ? ultra-slim">
+	    <div n:if="$event_news->count() > 0">
+		   	<h2><a n:href="Actuality:default">Události:</a></h2>
+			<div id="events_slider" class="slideshow">
+			    <div u="slides">
+			        <div>
+	        		{foreach $event_news as $new}
+					{if $iterator->counter % 3 == 1 && !$iterator->first}
+					</div>
+					<div>
+					{/if}
+						<a{if $new->target != ""} href="{$new->target}"{/if}>
+						    <img src="{$basePath}/images/news_thumbs/{$new->file}" />
+						    <div>{$new->title}</div>
+						    <span>
+						    	{if $new->date_to != ""}
+									{$new->date_from|date: 'j.n.'} - {$new->date_to|date: 'j.n.Y'}
+								{else}
+									{$new->date_from|date: 'j.n.Y'}
+								{/if}
+							</span>
+					    </a>
+					{/foreach}		    
+					</div>
+			    </div>
+		    </div>
+			<button class="prev" onclick="events_slider.$Prev()">předchozí</button>
+			<button class="next" onclick="events_slider.$Next()">nadcházející</button>
+		</div>
+		<div n:if="$photo_news->count() > 0">
+		   	<h2><a n:href="Galery:galeries">Foto:<a/></h2>
+			<div id="photos_slider" class="slideshow">
+			    <div u="slides">
+			        <div>
+	        		{foreach $photo_news as $new}
+					{if $iterator->counter % 3 == 1 && !$iterator->first}
+					</div>
+					<div>
+					{/if}
+						<a{if $new->target != ""} href="{$new->target}"{/if}>
+						    <img src="{$basePath}/images/news_thumbs/{$new->file}" />
+						    <div>{$new->title}</div>
+						    <span>{$new->date_from|date: 'd.m.Y'}</span>
+					    </a>
+					{/foreach}		    
+					</div>
+			    </div>
+		    </div>
+			<button class="prev" onclick="photos_slider.$Prev()">novější</button>
+			<button class="next" onclick="photos_slider.$Next()">starší</button>
+		</div>
+		<div n:if="$audio_news->count() > 0">
+		   	<h2><a n:href="Audio:latest">Audio:<a/></h2>
+			<div id="audio_slider" class="slideshow">
+			    <div u="slides">
+			        <div>
+	        		{foreach $audio_news as $new}
+					{if $iterator->counter % 3 == 1 && !$iterator->first}
+					</div>
+					<div>
+					{/if}
+						<a{if $new->target != ""} href="{$new->target}"{/if}>
+						    <img src="{$basePath}/images/news_thumbs/{$new->file}" />
+						    <div>{$new->title}</div>
+						    <span>{$new->date_from|date: 'd.m.Y'}</span>
+					    </a>
+					{/foreach}		    
+					</div>
+			    </div>
+		    </div>
+			<button class="prev" onclick="audio_slider.$Prev()">novější</button>
+			<button class="next" onclick="audio_slider.$Next()">starší</button>
+		</div>
+    </section>
+    <div class="divider"></div>
+    {/if}
+	<div id="tile">Mezinárodní společnost pro vědomí Kršny - ISKCON<br />zakladatel áčárja Jeho Božská Milost A. Č. Bhaktivédanta Svámí Prabhupáda</div>    
+{/block}
+{block scripts}
+{include parent}
+	<script type="text/javascript">
+        var _SlideshowTransitions = [
+	        { $Duration: 1200, $Opacity: 2},
+        ];
+
+        var options = {
+            $AutoPlay: true,   
+			$ArrowKeyNavigation: true,
+            $AutoPlayInterval: 3000,                            {* [Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000 *}
+            $PauseOnHover: 1,  
+            $SlideDuration: 500,                                {* [Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500 *}
+            $SlideWidth: 990,                                 	{* [Optional] Width of every slide in pixels, default value is width of 'slides' container *}
+            $SlideHeight: 526,                                	{* [Optional] Height of every slide in pixels, default value is height of 'slides' container *}
+            $SlideSpacing: 0, 					                {* [Optional] Space between each slide in pixels, default value is 0 *}
+            $SlideshowOptions: {                                {* [Optional] Options to specify and enable slideshow or not *}
+                $Class: $JssorSlideshowRunner$,                 {* [Required] Class to create instance of slideshow *}
+                $Transitions: _SlideshowTransitions, {* Fade *}
+            },
+
+            $BulletNavigatorOptions: {                                {* [Optional] Options to specify and enable navigator or not *}
+                $Class: $JssorBulletNavigator$,                       {* [Required] Class to create navigator instance *}
+                $SpacingX: 5,                                   {* [Optional] Horizontal space between each item in pixel, default value is 0 *}
+            }
+
+        };
+    
+        var slideshow = new $JssorSlider$("slideshow", options);     
+		
+		if({$event_news->count()} > 3)
+			 var events_slider = initSlider("events_slider");
+
+		if({$photo_news->count()} > 3)
+			var photos_slider = initSlider("photos_slider");
+		
+		if({$audio_news->count()} > 3)
+			var audio_slider = initSlider("audio_slider");
+		
+		function initSlider(element_id) {
+			var options = {
+	            $SlideWidth: 310, 
+	            $SlideHeight: 270,
+	            $Loop: 0,
+				$ArrowKeyNavigation: 0,
+	        };
+	        
+	        var slider = new $JssorSlider$(element_id, options);       			
+	        
+       		slider.$On($JssorSlider$.$EVT_PARK, function(position, fromPosition) {
+				var slides_count = slider.$SlidesCount();
+				var slider_container = $('#' + element_id).parent();
+				var prev_button = slider_container.find('button.prev');
+				var next_button = slider_container.find('button.next');
+				
+				position == 0 ?	prev_button.fadeOut() :	prev_button.fadeIn();
+				position == slides_count - 1 ? next_button.fadeOut() : next_button.fadeIn();
+			});
+			
+			return slider;
+		}
+		
+    </script>
+{/block}

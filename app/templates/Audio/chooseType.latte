@@ -1,0 +1,25 @@
+{block title}BVKS{/block}
+{block content}
+<h1>{$interpret->title}</h1>
+<section id="chose_type">
+    <div>
+		<img src="{$basePath}/mp3/live.jpg" />
+		<a href="{link audioFolder, $interpret->id, live}">Překlady živých přednášek</a>
+		<div>{$live_count} {$live_count|czPlural}</div>
+	</div>
+    <div>
+		<img src="{$basePath}/mp3/record.jpg" />
+		<a href="{link audioFolder, $interpret->id, record}">Překlady ze záznamu</a>
+		<div>{$records_count} {$records_count|czPlural}</div>
+	</div>
+</section>
+{/block}	
+{block scripts}
+{include parent}
+  <script type="text/javascript">
+    $('#chose_type > div').click(function() {
+      var href = $(this).children("a").attr("href");
+      window.location.href = href;
+    });
+  </script>
+{/block}

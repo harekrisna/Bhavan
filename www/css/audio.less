@@ -1,0 +1,153 @@
+nav#audio_nav {
+	color: @webTextColor;
+	
+	span {
+		margin-right: 5px;
+	}
+	
+	a {
+		color: inherit;
+		
+		&.current {
+			color: @webTextColorHover;
+		}
+	
+		
+		&:not(:last-child):after {
+			content: '|';
+			font-size: 16px;
+			color: @webTextColor;
+			margin-left: 5px;
+			position: relative;
+			top: -1px;
+		}
+		
+		&:hover {
+			color: @webTextColorHover;
+		}
+	}	
+}
+
+section#audio_folders {
+	margin-bottom: 100px;
+	margin-top: -37px;
+	display: table;
+	
+	> div {
+		width: 465px;
+		height: 80px;
+		margin-top: 52px;
+		margin-left: 10px;
+		float: left;
+		
+		a.preview { 
+			border-radius: 20px 0px;
+			width: 100px;
+			height: 100px;
+			float: left;
+						
+			img{
+				border-radius: inherit;
+				width: inherit;
+				height: inherit;				
+			}
+		}
+			
+		a.title {
+			font-family: 'Lora', serif;	
+			font-size: 18px;
+			font-weight: bold;
+			color: #EB8C3A;
+			margin: 0px;
+			margin-left: 25px;
+			float: left;
+			height: 20px;
+			clear: right;
+			display: block;
+			
+			&:hover, &.hover {
+				color: #663200 !important;
+			}
+		}
+		
+		p {
+			width: 340px;
+			margin-left: 126px;
+			line-height: 18px;
+			font-size: 15px;
+			padding-top: 27px;
+			color: #61503C;
+			margin-bottom: 20px;
+		    height: 35px;
+		}
+
+		div {
+			font-size: 13px;
+			font-style: italic;
+			margin-left: 26px;
+			color: #61503C;
+			float: left;
+			
+			&:last-child {
+				float: right;
+			}
+		}
+		
+		&:nth-child(even) {
+			margin-left: 40px;
+		}	
+	}
+}
+
+section#audio_folders.years{
+	a.preview {
+		font-size: 26px;
+		line-height: 100px;
+		text-align: center;
+		color: #FFFFFF;
+		
+		&.new {
+			background-color: rgba(18, 51, 62, 0.85);
+		}
+		
+		&.old {
+			background-color: rgba(98, 80, 60, 0.85);
+		}
+	}
+}
+
+section.lectures-group {
+	margin-bottom: 80px;
+	
+	div.group-header {
+		width: 745px;
+		font-size: 24px;
+		border-bottom: 2px @webTextColorHover solid;
+		margin: 20px 0 20px 10px;
+		clear: both;
+		
+		img, div {
+			width: 50px;
+			height: 50px;
+			.border-radiuses(0, 10px, 0, 10px);
+			margin: -5px 10px 0 10px;
+			display: block;
+			float: left;
+		}
+		
+		div {
+			font-size: 16px;
+			line-height: 50px;
+			text-align: center;
+			color: #FFFFFF;
+			
+			&.new {
+				background-color: #325058;
+			}
+			
+			&.old {
+				background-color: #796956;
+			}
+		}
+	}
+}

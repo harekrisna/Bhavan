@@ -1,0 +1,59 @@
+{block head}
+	<link rel="stylesheet" media="screen" href="{$basePath}/css/mediaelementplayer.css">
+{/block}
+{block title}Audio{/block}
+{block content}
+{include sidebar_controls}
+<h1>{$interpret->title}</h1>
+	{foreach $lectures as $lecture}
+	<div class="audio-player">
+		<h2>{$lecture->title}</h2>
+		<div class="verse">{$lecture->verse}</div>
+		<div class="place-time">
+			{$lecture->place} 
+			{$lecture->audio_date|dynamicDate}
+		</div>
+		{if $isMobile}
+		<audio style="float:left; margin: 5px 15px 0 0;" src="{$basePath}/mp3/{$lecture->audio_interpret->mp3_folder}/{$lecture->mp3_file}" type="audio/mp3" controls="controls" preload="none"></audio>
+		<a style="float:left; color: #61503C; margin-top: 10px;" href="{link download "./mp3/{$lecture->audio_interpret->mp3_folder}/{$lecture->mp3_file}"}">Stáhnout soubor</a>
+		{else}
+		<div class="hidder">
+			<div class="download-link"><a href="{link downloadMp3, $lecture->id}"></a></div>		
+			<audio src="{$basePath}/mp3/{$lecture->audio_interpret->mp3_folder}/{$lecture->mp3_file}" type="audio/mp3" controls="controls" preload="none"></audio>
+		</div>
+		{/if}
+	</div>	  
+	{/foreach}
+{/block}
+{block scripts}
+{include parent}
+{if !$isMobile}
+	<script src="{$basePath}/js/mediaelement-and-player.min.js"></script>
+	<script type="text/javascript">
+
+    $(function(){
+	  	var me = $('audio').mediaelementplayer({
+		    alwaysShowControls: true,
+		    features: ['playpause', 'progress', 'current', 'duration', 'volume', 'fullscreen'],
+		    alwaysShowHours: true,
+		    audioWidth: 560,
+		    audioHeight: 25,
+		    iPadUseNativeControls: true,
+		    iPhoneUseNativeControls: true,
+		    AndroidUseNativeControls: true,
+		    success: function (me) {
+				me.addEventListener('playing', function () {
+					var hidder = $(me).closest('.hidder');
+					hidder.addClass("wide");
+					
+				});
+				me.addEventListener('pause', function () {
+					var hidder = $(me).closest('.hidder');
+					hidder.removeClass("wide");
+				});
+			}
+		});
+	});
+  </script>
+{/if}
+{/block}

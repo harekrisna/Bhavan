@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="robots" content="index, follow">
+	<title>{ifset #title}{include title|striptags} | {/ifset}Prabhupád Bhavan</title>
+	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css?v=1.1">
+	<link rel="stylesheet" media="print" href="{$basePath}/css/print.css">
+    <link rel="apple-touch-icon" sizes="57x57" href="{$basePath}/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="{$basePath}/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{$basePath}/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{$basePath}/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{$basePath}/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{$basePath}/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="{$basePath}/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{$basePath}/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{$basePath}/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="{$basePath}/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="{$basePath}/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="{$basePath}/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="{$basePath}/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="{$basePath}/manifest.json">
+    <link rel="mask-icon" href="{$basePath}/safari-pinned-tab.svg" color="#de7d38">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="{$basePath}/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+	<link href='http://fonts.googleapis.com/css?family=Lora:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	{block head}{/block}
+</head>
+<body>
+	<script>
+		(function(i,s,o,g,r,a,	m){
+		i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		ga('create', 'UA-66118107-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<script> document.documentElement.className+=' js' </script>
+	<div id="container">
+	    <header>
+	        <a href="{link Homepage:default}" class="logo"></a>
+	        <nav id="actuality"><a n:href="Actuality:default">UDÁLOSTI:</a>
+				<div id="actuality_slider" class="slideshow">
+				    <div u="slides">
+					    <div>
+				        	<a n:href="Actuality:sunday">Programy pro veřejnost</a>
+					    </div>
+				        <div n:foreach="$actualities as $actuality">
+				        	<a n:href="Actuality:detail, $actuality->id">{$actuality->title}</a>
+				        </div>
+				    </div>
+			    </div>
+	        </nav>
+	        <nav> 
+		        <ul>
+		            <li><a {ifCurrent Homepage:*}class="current" {/ifCurrent}href="{link Homepage:default}">domů</a></li>
+		            <li><a {ifCurrent About:default}class="current" {/ifCurrent}href="{link About:default}">o nás</a></li>
+		            <li><a {ifCurrent Articles:*}class="current" {/ifCurrent}href="{link Articles:default}">články</a></li>
+		            <li><a {ifCurrent Galery:*}class="current" {/ifCurrent}href="{link Galery:galeries}">foto</a></li>
+		            <li><a {ifCurrent Audio:*}class="current" {/ifCurrent}href="{link Audio:interprets}">audio</a></li>
+		            <li><a {ifCurrent Links:*}class="current" {/ifCurrent}href="{link Links:default}">odkazy</a></li>
+		        </ul>
+		        <a href="https://www.facebook.com/pages/Prabhup%C3%A1d-Bhavan/160940383943087" target="_blank" class="facebook">f</a>
+	        </nav>
+	    </header>
+	    <div id="content">
+	    	{block divider}<div class="divider"></div>{/block}
+	    	{define sidebar_controls}
+	    	<div id="side_controls">
+				<a title="Nahoru" id="up"></a>
+				<a title="Zpět" n:if="$back" n:href="$back" id="back"></a>
+			</div>
+	    	{/define}
+			{include content}
+		</div>
+	</div>
+	<div id="footer">
+	    <div class="footer-container">
+	        <div class="activity">
+	          <ul>
+	            <li><span><a href="{link Actuality:sunday}">nedělní programy</a></span></li>
+	            <li><span>páteční harinámy</span></li>
+	            <li><span>bhakta program</span></li>
+	            <li><span>vaišnavské svátky</span></li>
+	          </ul>
+	        </div>
+	        <div class="contact">
+				<span>Kontakt</span>
+				<div>Sankírtan Dás<br />sankirtan.bvks@gmail.com<br />+420 739 634 848<br />č. účtu: 2500248634/2010</div>
+	        </div>
+	        <div class="mahamantra"><p>Haré Kršna Haré Kršna Kršna Kršna Haré Haré Haré Ráma Haré Ráma Ráma Ráma Haré Haré &nbsp;&nbsp;</p></div>
+	        <div class="copyright">&copy; 2015 Prabhupád Bhavan<br />a Bhaktivedanta Book Trust<br />designed by rasika.sks<br />created by FrezzY</div>        
+	        <div class="prabhupad-bhavan">
+	          <img src="{$basePath}/images/logo-pb-white.png" alt="logo" />
+	          <p>Durďákova 34, Brno</p>
+	          <a href="http://maps.google.com/?q=Durďákova 34, Brno" target="_blank">ukázat na mapě</a>
+	        </div>
+	    </div>
+	</div>
+	{block scripts}
+	<script src="{$basePath}/js/jquery.min.js"></script>
+	<script src="{$basePath}/js/netteForms.js"></script>
+	<script src="{$basePath}/js/main.js"></script>
+	<script src="{$basePath}/js/jssor.slider.js"></script>
+	<script>
+        var _SlideshowTransitions = [
+	        { $Duration:700,$Opacity:2,$Brother:{ $Duration:1000,$Opacity:2}},
+        ];
+
+        var options = {
+            $AutoPlay: true,   
+			$ArrowKeyNavigation: false,
+            $PauseOnHover: 1,  
+            $SlideWidth: 350,                                 	{* [Optional] Width of every slide in pixels, default value is width of 'slides' container *}
+            $SlideHeight: 30,                                	{* [Optional] Height of every slide in pixels, default value is height of 'slides' container *}
+            $SlideshowOptions: {                                {* [Optional] Options to specify and enable slideshow or not *}
+                $Class: $JssorSlideshowRunner$,                 {* [Required] Class to create instance of slideshow *}
+                $Transitions: _SlideshowTransitions, {* Fade *}
+            },
+        };
+    
+        var actuality_slider = new $JssorSlider$("actuality_slider", options);     
+
+	</script>
+	{/block}
+</body>
+</html>

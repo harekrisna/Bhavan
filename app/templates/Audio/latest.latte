@@ -1,0 +1,18 @@
+{extends audio.latte}
+{block head}
+	<link rel="stylesheet" media="screen" href="{$basePath}/css/mediaelementplayer.css">
+{/block}
+{block title}Audio{/block}
+{block audio}
+{foreach $lectures as $lecture} 
+	{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true}
+{/foreach}
+<div style="width: 10px; height: 50px;"></div>
+{/block}
+{block scripts}
+{include parent}
+{if !$isMobile}
+	<script src="{$basePath}/js/mediaelement-and-player.min.js"></script>
+	<script src="{$basePath}/js/mediaelement-and-player.init.js"></script>
+{/if}
+{/block}

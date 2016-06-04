@@ -1,0 +1,23 @@
+{var $show_interpret_abbr = empty($show_interpret_abbr) ? false : $show_interpret_abbr}
+<div class="audio-player">
+	<div class="line">
+		<h2>{$lecture->title}</h2>
+		<div class="place-time">
+			{$lecture->place} 
+			{$lecture->audio_year, $lecture->audio_month, $lecture->audio_day|dynamicDate}
+		</div>
+		<div n:if="$lecture->book_id" class="verse">{$lecture->book->abbreviation, $lecture->chapter, $lecture->verse|verseReadable}</div>
+		<div n:if="$show_interpret_abbr" class="interpret-abbr">{$lecture->audio_interpret->abbreviation}</div>
+		
+	</div>
+	
+	{if $isMobile}
+	<audio style="float:left; margin: 5px 15px 0 0;" src="{$basePath}/mp3/{$lecture->audio_interpret->mp3_folder}/{$lecture->mp3_file}" type="audio/mp3" controls="controls" preload="none"></audio>
+	<a style="float:left; color: #61503C; margin-top: 10px;" href="{link downloadMp3, $lecture->id}">Stáhnout soubor</a>
+	{else}
+	<div class="hidder">
+		<div class="download-link"><a href="{link downloadMp3, $lecture->id}"></a></div>		
+		<audio src="{$basePath}/mp3/{$lecture->audio_interpret->mp3_folder}/{$lecture->mp3_file}" type="audio/mp3" controls="controls" preload="none"></audio>
+	</div>
+	{/if}
+</div>	  			

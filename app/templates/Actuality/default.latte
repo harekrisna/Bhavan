@@ -1,0 +1,35 @@
+{block title}Aktuality{/block}
+{block content}
+<h1>Události</h1>
+	<section id="actuality_section">
+	    <article>
+			<div class="preview_image" style="background-image: url('{$basePath}/images/actuality/previews/program.jpg');">
+				<div>neděle</div>
+			</div>
+	      <a n:href="sunday">Programy pro veřejnost</a>
+	      <p>Každou neděli od 14:00<br />Védská filosofie, zpívání Haré Kršna mahámantry (mantra meditace), přednáška z Bhagavad-gíty, prostor pro vaše otázky, vegetariánská hostina, nabídka duchovní literatury, drobnosti z Indie.</p>
+	    </article>
+	    <article n:foreach="$actualities as $actuality">
+			<div class="preview_image" style="background-image: url('{$basePath}/images/actuality/previews/{$actuality->preview_image}');">
+				<div>
+					{if $actuality->date_to != ""}
+						{$actuality->date_from|date: 'j.n'}-{$actuality->date_to|date: 'j.n Y'}
+					{else}
+						{$actuality->date_from|date: 'j.n Y'}
+					{/if}
+				</div>
+			</div>
+			<a n:href="detail, $actuality->id">{$actuality->title}</a>
+			<p>{!strip_tags($actuality->description)|truncate:290}</p>
+		</article>
+	</section>
+{/block}
+{block scripts}
+{include parent}
+  <script type="text/javascript">
+    $('#actuality_section > article').click(function() {
+      var href = $(this).children("a").attr("href");
+      window.location.href = href;
+    });
+  </script>
+{/block}

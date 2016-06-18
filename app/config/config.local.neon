@@ -1,9 +1,0 @@
-parameters:
-
-
-database:
-	dsn: 'mysql:host=sql7.freesqldatabase.com;dbname=sql7122329'
-	user: sql7122329
-	password: wxiI7nvlhR
-	options:
-		lazy: yes

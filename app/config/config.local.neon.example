@@ -1,0 +1,9 @@
+parameters:
+
+
+database:
+	dsn: 'mysql:host=innodb.endora.cz;dbname=bhavan'
+	user: bhavan
+	password: basic16
+	options:
+		lazy: yes

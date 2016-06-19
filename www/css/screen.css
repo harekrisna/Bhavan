@@ -447,6 +447,14 @@ body {
 a {
   text-decoration: none;
 }
+.link {
+  color: #12323D;
+  transition: 0.3s;
+}
+.link:hover {
+  color: #EB8C3A;
+  transition: 0.3s;
+}
 h1,
 h2 {
   font-family: 'Lora', serif;

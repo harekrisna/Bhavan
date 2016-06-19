@@ -45,16 +45,6 @@ div.audio-player:last-child {
 	margin-right: 10px;
 }
 
-.audio-player div.interpret-abbr a{
-	color: #12323D;
-	transition: 0.3s; 
-}
-
-.audio-player div.interpret-abbr a:hover{
-	color: #EB8C3A;
-	transition: 0.3s; 
-}
-
 .audio-player div.verse {
 	margin-right: 12px;
 }

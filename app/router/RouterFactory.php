@@ -53,7 +53,7 @@ class RouterFactory
 			),
 		));
 		
-		$router[] = new Route('fotky/', 'Galery:galeries');
+		$router[] = new Route('fotky', 'Galery:galeries');
 		
 		/* routs for section audio */
 
@@ -82,7 +82,7 @@ class RouterFactory
 		*/
 		/* routs for section audio end */
 						
-		$router[] = new Route('<presenter>/<action>[/<id>]', array(
+		$router[] = new Route('<presenter>[/<action>][/<id>]', array(
 			'presenter' => array(
 				Route::FILTER_TABLE => array(
 					'aktuality' => 'Actuality',

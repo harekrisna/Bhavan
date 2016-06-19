@@ -239,24 +239,37 @@ class AudioPresenter extends BasePresenter	{
 	}
 	
 	public function renderInterpret($interpret_id, $group_by = "audio_year") {
-		$groups = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
-							  ->group($group_by);
+		$groups = $this->audio->findBy(['audio_interpret_id' => $interpret_id]);
   							  
 		if($group_by == "audio_year") {
-			$groups->order('audio_year DESC');
+			$groups->order('audio_year DESC')
+				   ->group($group_by);
 		}			
 		elseif($group_by == "book_id") {
-			$groups->order('book.id ASC');
-		}			
+			$groups->order('book.id ASC')
+				   ->group($group_by);
+		}
+		elseif($group_by == "time_created") {
+			$groups->order('time_created DESC');
+			$groups->group('YEAR(time_created)');
+		}					
 			
 		$lectures = [];
+		
 									  
-		foreach($groups as $group) {
-			$lectures[$group->id] = $this->audio->findBy(['audio_interpret_id' => $interpret_id, 
-														  $group_by => $group->$group_by
-														])
-												->order('audio_year DESC, audio_month DESC, audio_day DESC');
+		foreach($groups as $group) {			
+			if($group_by == 'time_created') {
+				$lectures[$group->id] = $this->audio->findBy(['audio_interpret_id' => $interpret_id, 
+											  				  "YEAR(".$group_by.")" => date('Y', strtotime($group->$group_by))])
+											  		->order('time_created DESC'); 
+			}
+			else {
+				$lectures[$group->id] = $this->audio->findBy(['audio_interpret_id' => $interpret_id, 
+											  				  $group_by => $group->$group_by])
+											  		->order('audio_year DESC, audio_month DESC, audio_day DESC'); 
+			}
 		}
+		
 		
 		if($group_by == 'book_id') {
 			$this->template->unclasified = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
@@ -267,8 +280,6 @@ class AudioPresenter extends BasePresenter	{
 													
 			$this->template->sankirtan = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
 													 ->where('seminar = ? AND sankirtan = ?', array(0, 1));
-
-
 		}
 		
 		$this->template->groups = $groups;

@@ -53,7 +53,7 @@ class RouterFactory
 			),
 		));
 		
-		$router[] = new Route('fotky', 'Galery:galeries');
+		$router[] = new Route('fotky/', 'Galery:galeries');
 		
 		/* routs for section audio */
 
@@ -69,16 +69,17 @@ class RouterFactory
 				Route::FILTER_IN => function ($url) use($container) { return $container->getService('interpret')->getIdByTitle($url);},
 			),
 		));
-				
-		$router[] = new Route('audio/vyber-typ/<interpret_id>', array(
+		
+		/*
+		$router[] = new Route('audio/knihy/<book_id>', array(
 			'presenter' => 'Audio',
-			'action' => 'chooseType',
-			'interpret_id' => array(
-				Route::FILTER_OUT => function ($id) use($container) { return $container->getService('interpret')->getTitleById($id);},
-				Route::FILTER_IN => function ($url) use($container) { return $container->getService('interpret')->getIdByTitle($url);},
+			'action' => 'book',
+			'book_id' => array(
+				Route::FILTER_OUT => function ($id) use($container) { return $container->getService('book')->getTitleById($id);},
+				Route::FILTER_IN => function ($url) use($container) { return $container->getService('book')->getIdByTitle($url);},
 			),
 		));
-
+		*/
 		/* routs for section audio end */
 						
 		$router[] = new Route('<presenter>/<action>[/<id>]', array(

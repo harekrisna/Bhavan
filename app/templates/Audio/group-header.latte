@@ -11,5 +11,8 @@
 	{else}
 	<img src="{$basePath}/images/books/unclasified.jpg" />Nezařazené
 	{/if}
+{elseif $group_by == 'time_created'}
+	<div n:class="$group->audio_year >= 2000 ? 'new', $group->audio_year < 2000 ? 'old'">{$group->time_created|date: 'Y'}</div>
+	Přednášky přidané v roce {$group->time_created|date: 'Y'}
 {/if}
 </div>

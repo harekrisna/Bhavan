@@ -1,5 +1,5 @@
 {block head}
-	<link rel="stylesheet" media="screen" href="{$basePath}/css/mediaelementplayer.css">
+	<link rel="stylesheet" media="screen" href="{$basePath}/css/mediaelementplayer.css?v=1.2?v=1.1">
 {/block}
 {block title}Audio{/block}
 {block content}
@@ -8,7 +8,7 @@
 <nav id="audio_nav">
 	<span>Seskupit podle:</span>
 	<a n:href="book, $book ? $book->id : NULL, 'audio_interpret_id'"{ifCurrent Audio:book, $book ? $book->id : NULL, 'audio_interpret_id'} class="current"{/ifCurrent}>Autorů</a>
-	<a n:href="book, $book ? $book->id : NULL, 'audio_year'"{ifCurrent Audio:book, $book ? $book->id : NULL, 'audio_year'} class="current"{/ifCurrent}>Roků</a>
+	<a n:href="book, $book ? $book->id : NULL, 'audio_year'"{ifCurrent Audio:book, $book ? $book->id : NULL, 'audio_year'} class="current"{/ifCurrent}>Času</a>
 </nav>
 {foreach $groups as $group}
 <section class="lectures-group">

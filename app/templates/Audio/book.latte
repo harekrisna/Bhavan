@@ -15,7 +15,7 @@
 	<div class="group-header">
 	{if $group_by == 'audio_interpret_id'}
 		<img src="{$basePath}/images/interpret_avatars/{$group->audio_interpret->image}" />
-		{$group->audio_interpret->title}
+		<a class="link" n:href="interpret, $group->interpret_id">{$group->audio_interpret->title}</a>
 	{elseif $group_by == 'audio_year'}
 		<div n:class="$group->audio_year >= 2000 ? 'new', $group->audio_year < 2000 ? 'old'">{$group->audio_year}</div>
 		Přednášky z roku {$group->audio_year}

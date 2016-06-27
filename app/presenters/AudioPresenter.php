@@ -120,8 +120,13 @@ class AudioPresenter extends BasePresenter	{
 		foreach($groups as $group) {
 			$lectures[$group->id] = $this->audio->findBy(['book_id' => $book_id, 
 														  $group_by => $group->$group_by
-														])
-												->order('audio_year DESC, audio_month DESC, audio_day DESC');
+														]);
+			if($group_by == "audio_interpret_id")
+				$lectures[$group->id]->order('chapter ASC, verse ASC');
+			else {
+				$lectures[$group->id]->order('audio_year DESC, audio_month DESC, audio_day DESC');
+			}
+				
 		}
 		
 		$this->template->groups = $groups;

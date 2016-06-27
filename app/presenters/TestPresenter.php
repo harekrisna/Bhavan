@@ -7,6 +7,7 @@ use Nette,
 use Nette\Utils\Finder;
 use Nette\Utils\Image;
 use Tracy\Debugger;
+use Extensions\FBGallery;
 
 class TestPresenter extends BasePresenter
 {
@@ -16,17 +17,13 @@ class TestPresenter extends BasePresenter
 }
 	public function renderDefault()
 	{   
-        $string = "file_100.jpg";
-        var_dump(pathinfo($string));
-        
-		$matches = array();
-		preg_match('/_([0-9]+)$/', $string, $matches);
-		if($matches != array()) {
-            $index = $matches[1];    
-            $new_filename = preg_replace('/_([0-9]+)$/', '_'.++$index, $string);
-        }
-        
-        
+		if(empty($_GET['fid'])){$_GET['fid'] = '160940383943087';} // force if empty for demo
+		
+        $cache = array('permission' => 'y',
+					'location' => 'cache', // ensure this directory has permission to read and write
+					'time' => 7200);
+					
+		$gallery = new FBGallery($_GET['fid'],'y',$cache);        
 	}
 	
 	protected function createComponentTestForm(){

@@ -247,14 +247,17 @@ class AudioPresenter extends BasePresenter	{
 		$groups = $this->audio->findBy(['audio_interpret_id' => $interpret_id]);
   							  
 		if($group_by == "audio_year") {
+			$group_by_column = "audio_year";
 			$groups->order('audio_year DESC')
-				   ->group($group_by);
+				   ->group($group_by_column);
 		}			
 		elseif($group_by == "book_id") {
+			$group_by_column = "book_id";
 			$groups->order('book.id ASC')
-				   ->group($group_by);
+				   ->group($group_by_column);
 		}
 		elseif($group_by == "time_created") {
+			$group_by_column = "time_created";
 			$groups->order('time_created DESC');
 			$groups->group('YEAR(time_created)');
 		}					
@@ -265,12 +268,12 @@ class AudioPresenter extends BasePresenter	{
 		foreach($groups as $group) {			
 			if($group_by == 'time_created') {
 				$lectures[$group->id] = $this->audio->findBy(['audio_interpret_id' => $interpret_id, 
-											  				  "YEAR(".$group_by.")" => date('Y', strtotime($group->$group_by))])
+											  				  "YEAR(".$group_by_column.")" => date('Y', strtotime($group->$group_by_column))])
 											  		->order('time_created DESC'); 
 			}
 			else {
 				$lectures[$group->id] = $this->audio->findBy(['audio_interpret_id' => $interpret_id, 
-											  				  $group_by => $group->$group_by])
+											  				  $group_by_column => $group->$group_by_column])
 											  		->order('audio_year DESC, audio_month DESC, audio_day DESC'); 
 			}
 		}

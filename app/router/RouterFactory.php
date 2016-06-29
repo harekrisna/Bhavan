@@ -60,15 +60,32 @@ class RouterFactory
 		$router[] = new Route('audio/nejnovejsi', 'Audio:latest');		
 		$router[] = new Route('audio/autori', 'Audio:interprets');
 		$router[] = new Route('audio/roky', 'Audio:years');
+		$router[] = new Route('audio/rok/<year>?seskupit=<group_by>', array(
+			'presenter' => 'Audio',
+			'action' => 'year',
+			'group_by' => array(
+				Route::FILTER_TABLE => array(
+					'autoru' => 'interpret_id',
+					'knihy' => 'book_id',
+				)
+			),
+		));
+		
 		$router[] = new Route('audio/knihy', 'Audio:books');
-		$router[] = new Route('audio/<interpret_id>/<group_by>', array(
+		$router[] = new Route('audio/<interpret_id>?seskupit=<group_by>', array(
 			'presenter' => 'Audio',
 			'action' => 'interpret',
 			'interpret_id' => array(
 				Route::FILTER_OUT => function ($id) use($container) { return $container->getService('interpret')->getTitleById($id);},
 				Route::FILTER_IN => function ($url) use($container) { return $container->getService('interpret')->getIdByTitle($url);},
 			),
-			'group_by' => "audio_year",
+			'group_by' => array(
+				Route::FILTER_TABLE => array(
+					'knihy' => 'book_id',
+					'cas_pridani' => 'time_created',
+					'casu' => 'audio_year'
+				)
+			),
 		));
 		
 		/*

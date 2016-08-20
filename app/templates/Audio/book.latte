@@ -3,7 +3,7 @@
 {/block}
 {block title}Audio{/block}
 {block content}
-{include sidebar_controls}
+{include breadcrumb_nav, backlinks => $backlinks}
 <h1>{$book ? $book->title : "Nezařazené"}</h1>
 <nav id="audio_nav">
 	<span>Seskupit podle:</span>

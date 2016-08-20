@@ -1,4 +1,5 @@
-
 www/mp3/upload/.DS_Store
-
 app/config/config.local.neon
+node_modules/
+
+npm-debug.log

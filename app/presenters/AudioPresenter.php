@@ -132,21 +132,16 @@ class AudioPresenter extends BasePresenter	{
 		$this->template->groups = $groups;
 		$this->template->lectures = $lectures;
 		$book = $this->book->get($book_id);
-		if($book) {
-			if(strpos($book->abbreviation, "ŚB") === 0) {
-				$this->template->back = "sb";
-			}
-			elseif(strpos($book->abbreviation, "CC") === 0) {
-				$this->template->back = "cc";
-			}
-			else {
-				$this->template->back = "books";
-			}
+		$backlinks = ['books' => "Audio"];
+		
+		if(strpos($book->abbreviation, "ŚB") === 0) {
+			$backlinks['sb'] = "Śrīmad-Bhāgavatam";
 		}
-		else {
-			$this->template->back = "books";
+		elseif(strpos($book->abbreviation, "CC") === 0) {
+			$backlinks['cc'] = "Śrī Caitanya-caritāmṛta";
 		}
 		
+		$this->template->backlinks = $backlinks;
 		$this->template->book = $book;
 		$this->template->group_by = $group_by;
    		$detect = new Mobile_Detect;

@@ -9,6 +9,5 @@ class ArticlesPresenter extends BasePresenter {
 	public function renderArticle($id) {
 		$this->setView($id);
 	    $this->template->id = $id;
-	    $this->template->back = "default";
 	}
 }

@@ -1,6 +1,6 @@
 {block title}{$actuality->title} | Aktuality{/block}
 {block content}
-{include sidebar_controls}
+{include breadcrumb_nav, backlinks => ['default' => "Akce"]}
 <h1>{$actuality->title}</h1>
 <div>
 	<img n:if="$actuality->article_image" class="article_image" src="{$basePath}/images/actuality/{$actuality->article_image}" />

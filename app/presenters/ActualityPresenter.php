@@ -17,7 +17,6 @@ class ActualityPresenter extends BasePresenter
 	}
 	
 	public function renderDetail($actuality_id) {
-		$this->template->back = "Actuality:default";
 		$this->template->actuality = $this->actuality->get($actuality_id);
 	}
 }

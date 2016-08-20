@@ -12,7 +12,7 @@
 	<div n:foreach="$interprets as $interpret">
 		<a class="preview" n:href="interpret, $interpret->id"><img src="{$basePath}/images/interpret_avatars/{$interpret->image}" /></a>
 		<a class="title" n:href="interpret, $interpret->id">{$interpret->title}</a>
-		<p>{$interpret->description}</p>
+		<p>{!$interpret->description}</p>
 		<div>
 			{$interpret->related("audio", "audio_interpret_id")->count()|czPlural}
 		</div>

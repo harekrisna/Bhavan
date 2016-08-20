@@ -68,10 +68,15 @@
 	    </header>
 	    <div id="content">
 	    	{block divider}<div class="divider"></div>{/block}
-	    	{define sidebar_controls}
-	    	<div id="side_controls">
+	    	{define breadcrumb_nav}
+			<nav class="breadcrumb" n:ifset="$backlinks">
+				{foreach $backlinks as $backlink => $backtitle}
+				<a class="link" n:href="$backlink">{$backtitle}</a>
+				{sep}<span>&raquo;</span>{/sep}
+				{/foreach}
+			</nav>
+			<div id="side_controls">
 				<a title="Nahoru" id="up"></a>
-				<a title="Zpět" n:if="$back" n:href="$back" id="back"></a>
 			</div>
 	    	{/define}
 			{include content}

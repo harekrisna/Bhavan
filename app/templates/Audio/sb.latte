@@ -1,6 +1,6 @@
 {extends audio.latte}
 {block content}
-	{include sidebar_controls, back => 'books'}
+{include breadcrumb_nav, backlinks => ['books' => "Audio"]}
 	<h1 n:block="title">Přednášky z Śrīmad-Bhāgavatamu</h1>
 	<section id="audio_folders" style="margin-top: -10px;">
 	{foreach $books as $sb}

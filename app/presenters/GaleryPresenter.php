@@ -29,7 +29,5 @@ class GaleryPresenter extends BasePresenter
 		$this->template->photos = $this->photo->getAll()
 											  ->where(["galery_id" => $galery_id])
 											  ->order("position ASC");
-
-		$this->template->back = "galeries";
 	}
 }

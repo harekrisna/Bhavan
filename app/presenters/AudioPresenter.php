@@ -43,7 +43,8 @@ class AudioPresenter extends BasePresenter	{
 	}
 	
 	public function renderInterprets()	{
-		$this->template->interprets = $this->interpret->getAll();	
+		$this->template->interprets = $this->interpret->getAll()
+													  ->order('sort_order ASC');	
     }
 	
 	public function renderYears()	{

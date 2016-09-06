@@ -68,13 +68,16 @@ class AudioPresenter extends BasePresenter	{
 		
 		if($group_by == 'book_id') {
 			$this->template->unclasified = $this->audio->findBy(['audio_year' => $year])
-									   				   ->where('book_id IS NULL AND seminar = ? AND sankirtan = ?', array(0, 0));
+									   				   ->where('book_id IS NULL AND seminar = ? AND sankirtan = ? AND varnasrama = ?', array(0, 0, 0));
 									   				   
 			$this->template->seminars = $this->audio->findBy(['audio_year' => $year])
-													->where('seminar = ? AND sankirtan = ?', array(1, 0));
+													->where('seminar = ?', 1);
 													
 			$this->template->sankirtan = $this->audio->findBy(['audio_year' => $year])
-													 ->where('seminar = ? AND sankirtan = ?', array(0, 1));
+													 ->where('sankirtan = ?', 1);
+													 
+			$this->template->varnasrama = $this->audio->findBy(['audio_year' => $year])
+													  ->where('varnasrama = ?', 1);													 
 
 		}
 		
@@ -88,7 +91,7 @@ class AudioPresenter extends BasePresenter	{
    		$this->template->back = "years";				
 	}
 
-	public function renderBooks()	{
+	public function renderThemes()	{
 		$this->template->bg = $this->book->findBy(['abbreviation' => 'BG'])
 										 ->fetch();
 
@@ -106,6 +109,8 @@ class AudioPresenter extends BasePresenter	{
 		$this->template->sankirtan = $this->audio->findBy(['sankirtan' => 1])
 												 ->count();
 
+		$this->template->varnasrama = $this->audio->findBy(['varnasrama' => 1])
+												  ->count();
 										 
 		$this->template->unclasified = $this->audio->findAll()
 												   ->where('book_id IS NULL AND seminar = ? AND sankirtan = ?', array(0, 0))
@@ -133,7 +138,7 @@ class AudioPresenter extends BasePresenter	{
 		$this->template->groups = $groups;
 		$this->template->lectures = $lectures;
 		$book = $this->book->get($book_id);
-		$backlinks = ['books' => "Audio"];
+		$backlinks = ['themes' => "Audio"];
 		
 		if(strpos($book->abbreviation, "ŚB") === 0) {
 			$backlinks['sb'] = "Śrīmad-Bhāgavatam";
@@ -165,11 +170,6 @@ class AudioPresenter extends BasePresenter	{
 												->order('audio_year DESC, audio_month DESC, audio_day DESC');
 		}
 
-		if($group_by == 'book_id') {
-			$this->template->unclasified = $this->audio->findBy([$type => 1])
-									   				   ->where('book_id IS NULL');
-		}
-
 		$this->template->groups = $groups;
 		$this->template->lectures = $lectures;
 		$this->template->type = $type;
@@ -197,7 +197,7 @@ class AudioPresenter extends BasePresenter	{
 		$this->template->groups = $groups;
 		$this->template->lectures = $lectures;
 		$this->template->book = false;
-		$this->template->back = "books";
+		$this->template->back = "themes";
 		$this->template->group_by = $group_by;
    		$detect = new Mobile_Detect;
    		$this->template->isMobile = $detect->isMobile();
@@ -277,13 +277,16 @@ class AudioPresenter extends BasePresenter	{
 		
 		if($group_by == 'book_id') {
 			$this->template->unclasified = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
-									   				   ->where('book_id IS NULL AND seminar = ? AND sankirtan = ?', array(0, 0));
+									   				   ->where('book_id IS NULL AND seminar = ? AND sankirtan = ? AND varnasrama = ?', array(0, 0, 0));
 									   				   
 			$this->template->seminars = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
-													->where('seminar = ? AND sankirtan = ?', array(1, 0));
+													->where('seminar = ?', 1);
 													
 			$this->template->sankirtan = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
-													 ->where('seminar = ? AND sankirtan = ?', array(0, 1));
+													 ->where('sankirtan = ?', 1);
+													 
+			$this->template->varnasrama = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
+													  ->where('varnasrama = ?', 1);													 
 		}
 		
 		$this->template->groups = $groups;

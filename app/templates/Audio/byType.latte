@@ -3,13 +3,16 @@
 {/block}
 {block title}Semináře | Audio{/block}
 {block content}
-{include breadcrumb_nav, backlinks => ['books' => "Audio"]}
-<h1>{$type == 'seminar' ? "Semináře" : "Sankírtanové lekce"}</h1>
+{include breadcrumb_nav, backlinks => ['themes' => "Audio"]}
+<h1>
+	{$type == 'seminar' ? "Semináře"}
+	{$type == 'sankirtan' ? "Sankírtanové lekce"}
+	{$type == 'varnasrama' ? "Varnášrama a farmy"}
+</h1>
 <nav id="audio_nav">
 	<span>Seskupit podle:</span>
 	<a n:href="byType, $type, 'audio_interpret_id'"{ifCurrent Audio:byType, $type, 'audio_interpret_id'} class="current"{/ifCurrent}>Autorů</a>
 	<a n:href="byType, $type, 'audio_year'"{ifCurrent Audio:byType, $type, 'audio_year'} class="current"{/ifCurrent}>Roků</a>
-	<a n:href="byType, $type, 'book_id'"{ifCurrent Audio:byType, $type, 'book_id'} class="current"{/ifCurrent}>Knih</a>
 </nav>
 {foreach $groups as $group}
 {continueIf $group_by == 'book_id' && $group->book_id == ""} {* přeskočit nezařazené knihy *}
@@ -20,15 +23,6 @@
 	{/foreach}
 </section>
 {/foreach}
-
-{if $group_by == 'book_id'}
-<section n:if="count($unclasified)" class="lectures-group">
-	{include group-header.latte, group_by => $group_by}
-	{foreach $unclasified as $lecture}
-		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true}
-	{/foreach}
-</section>
-{/if}
 
 {/block}
 {block scripts}

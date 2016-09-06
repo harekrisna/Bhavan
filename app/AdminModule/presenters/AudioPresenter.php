@@ -258,6 +258,7 @@ final class AudioPresenter extends BasePresenter {
 	    											
 		$form->addCheckbox('seminar', "Seminář");
 		$form->addCheckbox('sankirtan', "Sankírtan");
+		$form->addCheckbox('varnasrama', "Varnášrama a farmy");
 		$form->addCheckbox('add_to_news', "Přidat do novinek?");
 		$form->addHidden('mp3_file_name');
         $form->addSubmit('insert', 'Uložit')
@@ -300,6 +301,7 @@ final class AudioPresenter extends BasePresenter {
 				   	   					 'type' => $values['type'],
 				   	   					 'seminar' => $values['seminar'],
 				   	   					 'sankirtan' => $values['sankirtan'],
+				   	   					 'varnasrama' => $values['varnasrama'],				   	   					 
 				   	   					 'mp3_file' => $values['mp3_file_name'],
 				   	   					));
 		
@@ -342,6 +344,7 @@ final class AudioPresenter extends BasePresenter {
 				   	   				   		 'type' => $values['type'],
 				   	   				   		 'seminar' => $values['seminar'],
 					   	   					 'sankirtan' => $values['sankirtan'],
+					   	   					 'varnasrama' => $values['varnasrama'],
 				   	   					));
 		
 		if($update !== false) {

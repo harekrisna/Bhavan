@@ -8,8 +8,37 @@
 <nav id="audio_nav">
 	<span>Seskupit podle:</span>
 	<a n:href="year, $year, 'audio_interpret_id'"{ifCurrent Audio:year, $year, 'audio_interpret_id'} class="current"{/ifCurrent}>Autorů</a>
-	<a n:href="year, $year, 'book_id'"{ifCurrent Audio:year, $year, 'book_id'} class="current"{/ifCurrent}>Knih</a>
+	<a n:href="year, $year, 'book_id'"{ifCurrent Audio:year, $year, 'book_id'} class="current"{/ifCurrent}>Témat</a>
 </nav>
+{if $group_by == 'book_id'}
+<section n:if="count($sankirtan)" class="lectures-group">
+	<div class="group-header">
+		<img src="{$basePath}/images/books/sankirtan.jpg" />Sankírtanové lekce
+	</div>
+	{foreach $sankirtan as $lecture}
+		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true}
+	{/foreach}
+</section>
+
+<section n:if="count($varnasrama)" class="lectures-group">
+	<div class="group-header">
+		<img src="{$basePath}/images/books/varnasrama.jpg" />Varnášrama a farmy
+	</div>
+	{foreach $varnasrama as $lecture}
+		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true}
+	{/foreach}
+</section>
+
+<section n:if="count($seminars)" class="lectures-group">
+	<div class="group-header">
+		<img src="{$basePath}/images/books/seminars.jpg" />Semináře
+	</div>
+	{foreach $seminars as $lecture}
+		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true}
+	{/foreach}
+</section>
+{/if}
+
 {foreach $groups as $group}
 {continueIf $group_by == 'book_id' && $group->book_id == ""} {* přeskočit nezařazené knihy *}
 <section class="lectures-group">
@@ -21,24 +50,6 @@
 {/foreach}
 
 {if $group_by == 'book_id'}
-<section n:if="count($seminars)" class="lectures-group">
-	<div class="group-header">
-		<img src="{$basePath}/images/books/seminars.jpg" />Semináře
-	</div>
-	{foreach $seminars as $lecture}
-		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true}
-	{/foreach}
-</section>
-
-<section n:if="count($sankirtan)" class="lectures-group">
-	<div class="group-header">
-		<img src="{$basePath}/images/books/sankirtan.jpg" />Sankírtanové lekce
-	</div>
-	{foreach $sankirtan as $lecture}
-		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true}
-	{/foreach}
-</section>
-
 <section n:if="count($unclasified)" class="lectures-group">
 	{include group-header.latte, group_by => $group_by}
 	{foreach $unclasified as $lecture}
@@ -46,6 +57,7 @@
 	{/foreach}
 </section>
 {/if}
+
 {/block}
 {block scripts}
 {include parent}

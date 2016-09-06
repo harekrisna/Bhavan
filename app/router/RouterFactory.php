@@ -66,12 +66,12 @@ class RouterFactory
 			'group_by' => array(
 				Route::FILTER_TABLE => array(
 					'autoru' => 'interpret_id',
-					'knihy' => 'book_id',
+					'temata' => 'book_id',
 				)
 			),
 		));
 		
-		$router[] = new Route('audio/knihy', 'Audio:books');
+		$router[] = new Route('audio/temata', 'Audio:themes');
 		$router[] = new Route('audio/<interpret_id>?seskupit=<group_by>', array(
 			'presenter' => 'Audio',
 			'action' => 'interpret',
@@ -81,7 +81,7 @@ class RouterFactory
 			),
 			'group_by' => array(
 				Route::FILTER_TABLE => array(
-					'knihy' => 'book_id',
+					'tema' => 'book_id',
 					'cas_pridani' => 'time_created',
 					'casu' => 'audio_year'
 				)

@@ -34,6 +34,7 @@
 	            <img title="{$mp3->type == 'live' ? 'živá lekce' : 'lekce ze záznamu'}" src="{$basePath}/images/admin/{$mp3->type}-icon.png" />
 				<img n:if="$mp3->sankirtan" title="sankírtanová lekce" src="{$basePath}/images/admin/book-icon.png" />
 				<img n:if="$mp3->seminar" title="seminář" src="{$basePath}/images/admin/seminar-icon.png" />
+				<img n:if="$mp3->varnasrama" title="varnášrama a farmy" src="{$basePath}/images/admin/varnasrama-icon.png" />
 	        </td>
             <td><a class="button edit" n:href="edit, $mp3->id"></a><a class="button remove" n:href="delete!, $mp3->id"></a></td>
 		</tr>        

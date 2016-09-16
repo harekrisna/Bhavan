@@ -10,7 +10,7 @@
 	      <p>Každou neděli od 14:00<br />Védská filosofie, zpívání Haré Kršna mahámantry (mantra meditace), přednáška z Bhagavad-gíty, prostor pro vaše otázky, vegetariánská hostina, nabídka duchovní literatury, drobnosti z Indie.</p>
 	    </article>
 	    <article n:foreach="$actualities as $actuality">
-			<div class="preview_image" style="background-image: url('{$basePath}/images/actuality/previews/{$actuality->preview_image}');">
+			<div class="preview_image" style="background-image: url('{$basePath}/images/actuality/previews/{$actuality->preview_image|noescape}');">
 				<div>
 					{if $actuality->date_to != ""}
 						{$actuality->date_from|date: 'j.n'}-{$actuality->date_to|date: 'j.n Y'}

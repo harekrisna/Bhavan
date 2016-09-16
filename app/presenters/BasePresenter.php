@@ -18,6 +18,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     protected $photo;
     protected $audio;
     protected $book;
+    protected $page;
 	    
 	protected function startup()	{
 		parent::startup();
@@ -36,6 +37,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         $this->photo = $this->context->getService("photo");
         $this->audio = $this->context->getService("audio");
         $this->book = $this->context->getService("book");
+        $this->page = $this->context->getService("page");
 	}
   
   	public function beforeRender() {

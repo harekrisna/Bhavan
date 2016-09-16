@@ -39,4 +39,4 @@ services:
 	audio: App\Model\Audio
 	book: App\Model\Book
 	router: App\RouterFactory::createRouter
-	purifier: Extensions\MyPurifier
+	page: App\Model\Page

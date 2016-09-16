@@ -13,7 +13,8 @@
 {if $group_by == 'book_id'}
 <section n:if="count($sankirtan)" class="lectures-group">
 	<div class="group-header">
-		<img src="{$basePath}/images/books/sankirtan.jpg" />Sankírtanové lekce
+		<img src="{$basePath}/images/books/sankirtan.jpg" />
+		<h2>Sankírtanové lekce</h2>
 	</div>
 	{foreach $sankirtan as $lecture}
 		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true}
@@ -22,7 +23,8 @@
 
 <section n:if="count($varnasrama)" class="lectures-group">
 	<div class="group-header">
-		<img src="{$basePath}/images/books/varnasrama.jpg" />Varnášrama a farmy
+		<img src="{$basePath}/images/books/varnasrama.jpg" />
+		<h2>Varnášrama a farmy</h2>
 	</div>
 	{foreach $varnasrama as $lecture}
 		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true}
@@ -31,7 +33,8 @@
 
 <section n:if="count($seminars)" class="lectures-group">
 	<div class="group-header">
-		<img src="{$basePath}/images/books/seminars.jpg" />Semináře
+		<img src="{$basePath}/images/books/seminars.jpg" />
+		<h2>Semináře</h2>
 	</div>
 	{foreach $seminars as $lecture}
 		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true}

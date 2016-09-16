@@ -21,8 +21,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     protected $interpret;
     protected $audio;
     protected $book;
-    
-    protected $purifier;
+    protected $page;
 
     protected function startup()	{
 		parent::startup();
@@ -36,8 +35,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         $this->interpret = $this->context->getService("interpret");
         $this->audio = $this->context->getService("audio");
         $this->book = $this->context->getService("book");
-        
-        $this->purifier = $this->context->getService("purifier");
+        $this->page = $this->context->getService("page");
 
 		$this->template->addFilter('dynamicDateSortable', $this->context->getService("filters")->dynamicDateSortable);
 		$this->template->addFilter('verseReadable', $this->context->getService("filters")->verseReadable);

@@ -118,22 +118,39 @@ section#audio_folders.years{
 }
 
 section.lectures-group {
-	margin-bottom: 80px;
+	margin-bottom: 65px;
+	
+	&:first-of-type {
+		margin-top: 35px;
+	}
 	
 	div.group-header {
 		width: 745px;
-		font-size: 24px;
-		border-bottom: 2px @webTextColorHover solid;
-		margin: 20px 0 20px 10px;
+		margin: 20px 0 20px 5px;
 		clear: both;
 		
+		h2 {
+			font-family: "PT Sans",sans-serif;
+			font-weight: normal;
+			font-size: 23px !important;
+			color: #333333;
+			border-bottom: 2px solid rgba(235, 140, 58, 0.78);
+			margin-left: 90px !important;
+			display: block;
+		}
+		
 		img, div {
-			width: 50px;
-			height: 50px;
-			.border-radiuses(0, 10px, 0, 10px);
-			margin: -5px 10px 0 10px;
+			width: 75px;
+			height: 75px;
+			.border-radiuses(0, 15px, 0, 15px);
+			margin: -20px 15px 0 0;
 			display: block;
 			float: left;
+			
+			&.year-label {
+				font-size: 20px;
+				line-height: 79px;
+			}
 		}
 		
 		div {

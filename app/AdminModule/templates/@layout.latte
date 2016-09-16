@@ -21,11 +21,17 @@
     <div id="header-inner">
        	<a href="http://www.bhavan.cz"><img src="{$basePath}/favicon.ico" /></a>
         <div class="main-menu">
-			<a {ifCurrent News:*}class="current" {/ifCurrent}href="{link News:list}">Novinky</a>
-			<a {ifCurrent Actuality:*}class="current" {/ifCurrent}href="{link Actuality:list}">Aktuality</a>
-			<a {ifCurrent Slides:*}class="current" {/ifCurrent}href="{link Slides:list}">Slajdy</a>
-			<a {ifCurrent Audio:*}class="current" {/ifCurrent}href="{link Audio:list, 'all'}">Audio</a>
-			<a {ifCurrent Galery:*}class="current" {/ifCurrent}href="{link Galery:list}">Fotky</a>
+	        <nav id="admin-menu">
+				<a {ifCurrent News:*}class="current" {/ifCurrent}href="{link News:list}">Novinky</a>
+				<a {ifCurrent Actuality:*}class="current" {/ifCurrent}href="{link Actuality:list}">Aktuality</a>
+				<a {ifCurrent Slides:*}class="current" {/ifCurrent}href="{link Slides:list}">Slajdy</a>
+				<a {ifCurrent Audio:*}class="current" {/ifCurrent}href="{link Audio:list, 'all'}">Audio</a>
+				<a {ifCurrent Galery:*}class="current" {/ifCurrent}href="{link Galery:list}">Fotky</a>
+	        </nav>
+			<span>|</span>
+            <nav id="web-menu">
+                <a {ifCurrent Page:form, about}class="current"{/ifCurrent} href="{link Page:form, about}">O nás</a>
+            </nav>
         </div>
         {if $user->isLoggedIn()}
         <div class="user">      

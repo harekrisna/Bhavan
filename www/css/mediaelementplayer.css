@@ -18,7 +18,7 @@ div.audio-player:last-child {
 
 .audio-player h2 {
 	font-family: 'Lora', serif;
-	font-weight: bold;
+	font-weight: normal;
   	font-size: 18px;
 	color: #EB8C3A;
 	margin: 0 !important;

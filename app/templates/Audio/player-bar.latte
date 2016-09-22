@@ -1,4 +1,5 @@
 {var $show_interpret_abbr = empty($show_interpret_abbr) ? false : $show_interpret_abbr}
+{var $group_by = empty($group_by) ? "time_created" : $group_by}
 <div class="audio-player">
 	<div class="line">
 		<h2>{$lecture->title}</h2>
@@ -7,8 +8,9 @@
 			{$lecture->audio_year, $lecture->audio_month, $lecture->audio_day|dynamicDate}
 		</div>
 		<div n:if="$lecture->book_id" class="verse">{$lecture->book->abbreviation, $lecture->chapter, $lecture->verse|verseReadable}</div>
-		<div n:if="$show_interpret_abbr" class="interpret-abbr"><a class="link" n:href="interpret, $lecture->audio_interpret->id, time_created" title="{$lecture->audio_interpret->title}">{$lecture->audio_interpret->abbreviation}</div>
-		
+		<div n:if="$show_interpret_abbr" class="interpret-abbr">
+			<a class="link" n:href="interpret, $lecture->audio_interpret->id, $group_by" title="{$lecture->audio_interpret->title}">{$lecture->audio_interpret->abbreviation}</a>
+		</div>
 	</div>
 	
 	{if $isMobile}

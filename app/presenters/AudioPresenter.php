@@ -280,13 +280,16 @@ class AudioPresenter extends BasePresenter	{
 									   				   ->where('book_id IS NULL AND seminar = ? AND sankirtan = ? AND varnasrama = ?', array(0, 0, 0));
 									   				   
 			$this->template->seminars = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
-													->where('seminar = ?', 1);
+													->where('seminar = ?', 1)
+													->order('time_created DESC');
 													
 			$this->template->sankirtan = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
-													 ->where('sankirtan = ?', 1);
+													 ->where('sankirtan = ?', 1)
+													 ->order('time_created DESC');
 													 
 			$this->template->varnasrama = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
-													  ->where('varnasrama = ?', 1);													 
+													  ->where('varnasrama = ?', 1)
+													  ->order('time_created DESC');													 
 		}
 		
 		$this->template->groups = $groups;

@@ -19,6 +19,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     protected $galery;
     protected $photo;
     protected $interpret;
+    protected $collection;
     protected $audio;
     protected $book;
     protected $page;
@@ -33,6 +34,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         $this->galery = $this->context->getService("galery");
         $this->photo = $this->context->getService("photo");
         $this->interpret = $this->context->getService("interpret");
+        $this->collection = $this->context->getService("audio_collection");
         $this->audio = $this->context->getService("audio");
         $this->book = $this->context->getService("book");
         $this->page = $this->context->getService("page");

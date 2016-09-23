@@ -34,6 +34,7 @@ services:
 	actuality: App\Model\Actuality
 	slide: App\Model\Slide
 	interpret: App\Model\Interpret
+	audio_collection: App\Model\AudioCollection
 	galery: App\Model\Galery
 	photo: App\Model\Photo
 	audio: App\Model\Audio

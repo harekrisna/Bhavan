@@ -33,7 +33,7 @@ class AudioPresenter extends BasePresenter	{
 	
 	public function renderLatest() {
 		$detect = new Mobile_Detect;
-		$this->template->isMobile = $detect->isMobile();		
+		$this->template->isMobile = $detect->isMobile();
 		$this->template->back = "interprets";
 			
 		$this->template->lectures = $this->audio->findAll()
@@ -205,13 +205,13 @@ class AudioPresenter extends BasePresenter	{
 	
 	public function renderSb() {
 		$this->template->books = $this->book->findAll()
-											 ->where("book.abbreviation LIKE 'SB%'");
+											->where("book.abbreviation LIKE 'SB%'");
 	}
 	
 
 	public function renderCc() {
 		$this->template->books = $this->book->findAll()
-											 ->where("book.abbreviation LIKE 'CC%'");
+											->where("book.abbreviation LIKE 'CC%'");
 	}	
 	
 	public function renderChooseType($interpret_id) {
@@ -301,6 +301,32 @@ class AudioPresenter extends BasePresenter	{
    		
    		$this->template->back = "interprets";
 	}
+	
+	public function renderSingleAudio($id) {
+		$audio_mp3 = $this->audio->get($id);
+
+		if (!$audio_mp3)
+            throw new Nette\Application\BadRequestException;
+
+		$this->template->lecture = $audio_mp3;
+
+		$detect = new Mobile_Detect;
+		$this->template->isMobile = $detect->isMobile();
+	}
+	
+	public function renderAudioCollection($collection_id) {
+		$audio_collection = $this->audio->findBy(['audio_collection_id' => $collection_id]);
+
+		if (!$audio_collection)
+            throw new Nette\Application\BadRequestException;
+			
+		$this->template->collection = $this->collection->get($collection_id);
+		$this->template->audio_collection = $audio_collection;
+
+		$detect = new Mobile_Detect;
+		$this->template->isMobile = $detect->isMobile();
+	}
+	
 	
 	public function actionDownloadMp3($id) {
 		Debugger::fireLog($id);

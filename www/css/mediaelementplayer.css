@@ -16,7 +16,7 @@ div.audio-player:last-child {
 	width: 581px !important;
 }
 
-.audio-player h2 {
+.audio-player a.title, .audio-player div.title {
 	font-family: 'Lora', serif;
 	font-weight: normal;
   	font-size: 18px;

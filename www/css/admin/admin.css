@@ -273,8 +273,8 @@ table#interpret_list th.title {
 table#interpret_list th.lessons {
   width: 50px;
 }
-table#interpret_list th.actions {
-  width: 32px;
+table#collection_list {
+  min-width: 500px;
 }
 h1.clear {
   border-bottom: 1px solid #cacaca;
@@ -603,6 +603,9 @@ nav#sub_actions a.sort {
 nav#sub_actions a.interprets {
   background-image: url('../../images/admin/guru-icon.png');
 }
+nav#sub_actions a.collections {
+  background-image: url('../../images/admin/collection-icon.png');
+}
 nav#sub_actions a:not(:last-child):after {
   content: " :";
   color: #404040;
@@ -791,6 +794,9 @@ table.list {
 }
 .list td a.photos {
   background-image: url("../../images/admin/images-icon.png");
+}
+.list th.actions {
+  width: 32px;
 }
 /* obecná tabulka výpisů end */
 /*** aktuality ***/

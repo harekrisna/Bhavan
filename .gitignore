@@ -4,3 +4,4 @@ node_modules/
 temp/cache
 npm-debug.log
 .DS_Store
+temp/btfj.dat

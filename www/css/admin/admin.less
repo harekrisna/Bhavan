@@ -2,7 +2,6 @@
 @import "actuality.less";
 @import "slides.less";
 @import "audio.less";
-@import "interpret.less";
 @import "galery.less";
 @import "switch.less";
 
@@ -196,6 +195,7 @@ nav#sub_actions {
 		&.generate-photos {	background-image: url('../../images/admin/automate-icon.png') }
 		&.sort { background-image: url('../../images/admin/sort-icon.png') }
 		&.interprets { background-image: url('../../images/admin/guru-icon.png') }
+		&.collections { background-image: url('../../images/admin/collection-icon.png') }
 	
 		&:not(:last-child):after { 
 			content: " :" ;
@@ -414,6 +414,10 @@ table.list {
     background-image: url("../../images/admin/images-icon.png"); 
 }
 
+.list th.actions { 
+	width: 32px; 
+}
+
 /* obecná tabulka výpisů end */
 /*** aktuality ***/
 
@@ -610,3 +614,5 @@ div.flash.error {
 .backstop {
     clear: both;
 }
+
+

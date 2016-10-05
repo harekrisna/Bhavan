@@ -4,7 +4,6 @@
 <table id="collection_list" class="list">
 	<thead>
 		<tr>
-			<th class="image"></th>
 			<th class="title">Název</th>
 			<th class="lessons">Lekcí</th>
 			<th class="actions"></th>
@@ -13,7 +12,7 @@
 	<tbody>
 	<tr n:foreach="$collections as $collection" id="{$collection->id}">
 		<td><a n:href="edit, $collection->id">{$collection->title}</a></td>
-		<td class="center">{$interpret->related('audio')->count()}</td>
+		<td class="center">{$collection->related('audio')->count()}</td>
         <td>
 	        <a class="button edit" n:href="edit, $collection->id"></a>
 	        <a class="button remove" n:href="remove!, $collection->id"></a>

@@ -41,7 +41,7 @@ final class CollectionPresenter extends BasePresenter {
             throw new Nette\Application\BadRequestException("Kolekce nenalezena.");
 			
         $this->template->record = $this->record;
-        $this["interpretForm"]['data']->setDefaults($this->record);
+        $this["collectionForm"]['data']->setDefaults($this->record);
 	}
 
 	public function renderEdit($record_id) {
@@ -68,7 +68,7 @@ final class CollectionPresenter extends BasePresenter {
 
 	   	$data = $form->addContainer('data');
 		
-	    $data->addText('name', 'Název kolekce', 55, 255)
+	    $data->addText('title', 'Název kolekce', 55, 255)
 			 ->setRequired('Zadejte prosím název.');
 			 
 	    $data->addText('url', 'URL', 55, 255)

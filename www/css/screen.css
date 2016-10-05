@@ -247,6 +247,9 @@ nav#audio_nav a:not(:last-child):after {
 nav#audio_nav a:hover {
   color: #eb8c3a;
 }
+h2.collection_title {
+  margin-top: 10px !important;
+}
 section#audio_folders {
   margin-bottom: 100px;
   margin-top: -37px;
@@ -575,6 +578,7 @@ nav.breadcrumb {
 }
 #content {
   margin-bottom: 20px;
+  min-height: 400px;
 }
 #content h1 {
   margin: 0px 0px 5px 0px;

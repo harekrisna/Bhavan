@@ -1,0 +1,15 @@
+{extends audio.latte}
+{block head}
+	<link rel="stylesheet" media="screen" href="{$basePath}/css/mediaelementplayer.css?v=1.2">
+{/block}
+{block title}Audio{/block}
+{block audio}
+{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true, title_only_text => true}
+{/block}
+{block scripts}
+{include parent}
+{if !$isMobile}
+	<script src="{$basePath}/js/mediaelement-and-player.min.js"></script>
+	<script src="{$basePath}/js/mediaelement-and-player.init.js"></script>
+{/if}
+{/block}

@@ -382,7 +382,7 @@ final class GaleryPresenter extends BasePresenter {
 		$folder = $galery->photos_folder;
 		$photos = $this->photo->findAll()
 							  ->where(['galery_id' => $galery_id])
-							  ->order('length(file), file');
+							  ->order('CONCAT(REPEAT("0", 18 - LENGTH(file)), file)');
 		
 		$position = 1;
 		foreach($photos as $photo) {

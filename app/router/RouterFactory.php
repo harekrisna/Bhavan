@@ -57,7 +57,7 @@ class RouterFactory
 		
 		/* routs for section audio */
 
-		$router[] = new Route('audio/nejnovejsi', 'Audio:latest');		
+		$router[] = new Route('audio/nejnovejsi', 'Audio:latest');
 		$router[] = new Route('audio/autori', 'Audio:interprets');
 		$router[] = new Route('audio/roky', 'Audio:years');
 		$router[] = new Route('audio/rok/<year>?seskupit=<group_by>', array(
@@ -85,6 +85,16 @@ class RouterFactory
 					'cas_pridani' => 'time_created',
 					'casu' => 'audio_year'
 				)
+			),
+		));
+		
+		$router[] = new Route('audio/<id [0-9]+>', 'Audio:singleAudio');
+		$router[] = new Route('audio/<collection_id>', array(
+			'presenter' => 'Audio',
+			'action' => 'audioCollection',
+			'collection_id' => array(
+				Route::FILTER_OUT => function ($id) use($container) { return $container->getService('audio_collection')->getTitleById($id);},
+				Route::FILTER_IN => function ($url) use($container) { return $container->getService('audio_collection')->getIdByTitle($url);},
 			),
 		));
 		

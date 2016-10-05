@@ -255,6 +255,9 @@ final class AudioPresenter extends BasePresenter {
 	    $form->addSelect('type', 'Typ lekce:', array('live' => "Živá lekce",
 	    											 'record' => "Překlad ze záznamu"
 	    											));
+
+	    $form->addSelect('audio_collection_id', 'Kolekce:', $this->collection->getAll()->fetchPairs('id', 'title'))
+		     ->setPrompt('- žádná -');;
 	    											
 		$form->addCheckbox('seminar', "Seminář");
 		$form->addCheckbox('sankirtan', "Sankírtan");
@@ -291,14 +294,15 @@ final class AudioPresenter extends BasePresenter {
 	    
 		$ok = $this->audio->insert(array('title' => $values['title'],
 				   	   				     'audio_interpret_id' => $values['audio_interpret_id'],
-				   	   					 'place' => $values['place'],
-				   	   					 'book_id' => $values['book_id'],
-				   	   					 'chapter' => $values['chapter'],
-				   	   					 'verse' => $values['verse'],
-			   	   				   		 'audio_year' => $values['audio_year'],
-			   	   				   		 'audio_month' => $values['audio_month'],
-			   	   				   		 'audio_day' => $values['audio_day'],
+					   					 'place' => $values['place'],
+					   					 'book_id' => $values['book_id'],
+					   					 'chapter' => $values['chapter'],
+										 'verse' => $values['verse'],
+				   						 'audio_year' => $values['audio_year'],
+				   						 'audio_month' => $values['audio_month'],
+				   						 'audio_day' => $values['audio_day'],
 				   	   					 'type' => $values['type'],
+				   						 'audio_collection_id' => $values['audio_collection_id'],
 				   	   					 'seminar' => $values['seminar'],
 				   	   					 'sankirtan' => $values['sankirtan'],
 				   	   					 'varnasrama' => $values['varnasrama'],				   	   					 
@@ -342,6 +346,7 @@ final class AudioPresenter extends BasePresenter {
 				   	   				   		 'audio_month' => $values['audio_month'],
 				   	   				   		 'audio_day' => $values['audio_day'],
 				   	   				   		 'type' => $values['type'],
+				   	   				   		 'audio_collection_id' => $values['audio_collection_id'],
 				   	   				   		 'seminar' => $values['seminar'],
 					   	   					 'sankirtan' => $values['sankirtan'],
 					   	   					 'varnasrama' => $values['varnasrama'],

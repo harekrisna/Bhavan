@@ -274,7 +274,7 @@ table#interpret_list th.lessons {
   width: 50px;
 }
 table#collection_list {
-  min-width: 500px;
+  min-width: 800px;
 }
 h1.clear {
   border-bottom: 1px solid #cacaca;

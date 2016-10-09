@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{$basePath}/css/photoswipe.css" type="text/css" />
 <link rel="stylesheet" href="{$basePath}/css/default-skin.css" type="text/css" />{/block}
 {block content}
-{include breadcrumb_nav, backlinks => ['galeries' => "Foto"]}
+{include breadcrumb_nav, backlinks => $backlinks}
 <h1>{$galery->title}</h1>
 <div id="gallery" n:inner-foreach="$photos as $photo">
 	<a href="{$basePath}/images/galery/{$galery->photos_folder}/photos/{$photo->file}">

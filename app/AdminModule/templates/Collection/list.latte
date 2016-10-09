@@ -5,6 +5,7 @@
 	<thead>
 		<tr>
 			<th class="title">Název</th>
+			<th class="url">URL</th>
 			<th class="lessons">Lekcí</th>
 			<th class="actions"></th>
 		</tr>
@@ -12,6 +13,7 @@
 	<tbody>
 	<tr n:foreach="$collections as $collection" id="{$collection->id}">
 		<td><a n:href="edit, $collection->id">{$collection->title}</a></td>
+		<td>{$collection->url}</td>		
 		<td class="center">{$collection->related('audio')->count()}</td>
         <td>
 	        <a class="button edit" n:href="edit, $collection->id"></a>

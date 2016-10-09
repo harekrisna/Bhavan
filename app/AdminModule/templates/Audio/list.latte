@@ -27,14 +27,15 @@
 		            <span class="sort-helper">{$mp3->audio_year.'00x00'}</span>{$mp3->audio_year}
 	            {/if}
 	        </td>
-            <td><a n:href="edit, $mp3->id">{$mp3->title}</a></td>
-            <td>{$mp3->interpret->abbreviation}</td>
-            <td>{if isset($mp3->book_id)}{$mp3->book->abbreviation, $mp3->chapter, $mp3->verse|verseReadable}{/if}</td>
-            <td class="flags">
-	            <img title="{$mp3->type == 'live' ? 'živá lekce' : 'lekce ze záznamu'}" src="{$basePath}/images/admin/{$mp3->type}-icon.png" />
+			<td><a n:href="edit, $mp3->id">{$mp3->title}</a></td>
+			<td>{$mp3->interpret->abbreviation}</td>
+			<td>{if isset($mp3->book_id)}{$mp3->book->abbreviation, $mp3->chapter, $mp3->verse|verseReadable}{/if}</td>
+			<td class="flags">
+				<img title="{$mp3->type == 'live' ? 'živá lekce' : 'lekce ze záznamu'}" src="{$basePath}/images/admin/{$mp3->type}-icon.png" />
 				<img n:if="$mp3->sankirtan" title="sankírtanová lekce" src="{$basePath}/images/admin/book-icon.png" />
 				<img n:if="$mp3->seminar" title="seminář" src="{$basePath}/images/admin/seminar-icon.png" />
 				<img n:if="$mp3->varnasrama" title="varnášrama a farmy" src="{$basePath}/images/admin/varnasrama-icon.png" />
+				<img n:if="$mp3->audio_collection_id" title="{$mp3->audio_collection->title}" src="{$basePath}/images/admin/collection-icon.png" />
 	        </td>
             <td><a class="button edit" n:href="edit, $mp3->id"></a><a class="button remove" n:href="delete!, $mp3->id"></a></td>
 		</tr>        

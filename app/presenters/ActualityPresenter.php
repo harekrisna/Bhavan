@@ -18,5 +18,10 @@ class ActualityPresenter extends BasePresenter
 	
 	public function renderDetail($actuality_id) {
 		$this->template->actuality = $this->actuality->get($actuality_id);
+		$this->template->backlinks = [$this->link('default') => "Akce"];
 	}
+	
+	public function renderSunday() {
+		$this->template->backlinks = [$this->link('default') => "Akce"];
+	}	
 }

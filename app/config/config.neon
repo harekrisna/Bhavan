@@ -4,14 +4,6 @@
 # If you don't protect this directory from direct web access, anybody will be able to see your passwords.
 # http://nette.org/security-warning
 #
-parameters:
-    database:
-        driver: mysql
-        host: 127.0.0.1
-        dbname: d91735_bhavan
-        user: root
-        password: root
-
 php:
 	date.timezone: Europe/Prague
 

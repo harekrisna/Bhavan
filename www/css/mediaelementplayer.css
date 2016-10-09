@@ -24,6 +24,8 @@ div.audio-player:last-child {
 	margin: 0 !important;
 	float: left;
 	height: 27px;
+	position: relative;
+	z-index: 1;
 }
 
 .audio-player .line {

@@ -26,7 +26,6 @@
 {/block}
 {block scripts}
 {include parent}
-{if $presenter->getAction() == 'add'}
 <script type='text/javascript' src="{$basePath}/js/admin.js"></script>
 <script>
     $("input[name=data\\[title\\]]").keyup(function() {
@@ -37,5 +36,4 @@
 	    $("input[name=data\\[url\\]]").val(stringToNiceURL(this.value));
     });
 </script>
-{/if}
 {/block}

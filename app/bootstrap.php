@@ -4,15 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $configurator = new Nette\Configurator;
 
-$configurator->setDebugMode(array('78.108.107.248',
-								  '78.108.107.249',
-								  '78.108.107.250', 
-								  '78.108.107.251', 
-								  '78.108.107.252', 
-								  '78.108.107.253', 
-								  '78.108.107.254', 
-								  '78.108.107.255', 
-								  '94.112.79.165',
+$configurator->setDebugMode(array('94.112.79.165',
 								  '94.112.86.211', 
 								  '77.236.208.61',
 								  '31.31.234.251',

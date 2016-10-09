@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="robots" content="index, follow">
 	<title>{ifset #title}{include title|striptags} | {/ifset}Prabhupád Bhavan</title>
-	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css?v=1.2">
+	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css?v=1.3">
 	<link rel="stylesheet" media="print" href="{$basePath}/css/print.css">
     <link rel="apple-touch-icon" sizes="57x57" href="{$basePath}/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="{$basePath}/apple-touch-icon-60x60.png">
@@ -71,7 +71,7 @@
 	    	{define breadcrumb_nav}
 			<nav class="breadcrumb" n:ifset="$backlinks">
 				{foreach $backlinks as $backlink => $backtitle}
-				<a class="link" n:href="$backlink">{$backtitle}</a>
+				<a class="link" href="{$backlink}">{$backtitle}</a>
 				{sep}<span>&raquo;</span>{/sep}
 				{/foreach}
 			</nav>

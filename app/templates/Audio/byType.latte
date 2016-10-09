@@ -1,13 +1,10 @@
 {block head}
 	<link rel="stylesheet" media="screen" href="{$basePath}/css/mediaelementplayer.css?v=1.2?v=1.1">
 {/block}
-{block title}Semináře | Audio{/block}
 {block content}
-{include breadcrumb_nav, backlinks => ['themes' => "Audio"]}
-<h1>
-	{$type == 'seminar' ? "Semináře"}
-	{$type == 'sankirtan' ? "Sankírtanové lekce"}
-	{$type == 'varnasrama' ? "Varnášrama a farmy"}
+{include breadcrumb_nav, backlinks => $backlinks}
+<h1 n:block="title">
+	{$title}
 </h1>
 <nav id="audio_nav">
 	<span>Seskupit podle:</span>

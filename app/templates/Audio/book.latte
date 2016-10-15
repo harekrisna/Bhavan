@@ -8,7 +8,7 @@
 <nav id="audio_nav">
 	<span>Seskupit podle:</span>
 	<a n:href="book, $book ? $book->id : NULL, 'audio_interpret_id'"{ifCurrent Audio:book, $book ? $book->id : NULL, 'audio_interpret_id'} class="current"{/ifCurrent}>Autorů</a>
-	<a n:href="book, $book ? $book->id : NULL, 'audio_year'"{ifCurrent Audio:book, $book ? $book->id : NULL, 'audio_year'} class="current"{/ifCurrent}>Času</a>
+	<a n:href="book, $book ? $book->id : NULL, 'audio_year'"{ifCurrent Audio:book, $book ? $book->id : NULL, 'audio_year'} class="current"{/ifCurrent}>Roků</a>
 </nav>
 {foreach $groups as $group}
 <section class="lectures-group">

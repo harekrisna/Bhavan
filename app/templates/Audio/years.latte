@@ -2,7 +2,6 @@
 {block audio}
 <section id="audio_folders" class="years">
 	<div n:foreach="$years as $year">
-	{dump $year}
 		<a n:class="$year->year >= 2000 ? 'preview new', $year->year < 2000 ? 'preview old'" n:href="year, $year->year">
 			{$year->year}
 		</a>

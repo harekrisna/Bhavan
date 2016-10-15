@@ -36,8 +36,7 @@ class AudioPresenter extends BasePresenter	{
 	
 	public function renderLatest() {
 		$detect = new Mobile_Detect;
-		$this->template->isMobile = $detect->isMobile();
-		
+		$this->template->isMobile = $detect->isMobile();		
 		$this->template->last_30_days = $this->audio->findAll()
 													->where(new SqlLiteral("`time_created` BETWEEN CURDATE() - INTERVAL 30 DAY AND CURDATE()"))
 													->order('time_created DESC');

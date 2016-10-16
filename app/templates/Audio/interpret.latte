@@ -6,6 +6,7 @@
 
 {include breadcrumb_nav, backlinks => $backlinks}
 <h1>{$interpret->title}</h1>
+{link increaseMp3Playcount, 10}
 <nav id="audio_nav">
 	<span>Seskupit podle:</span>
 	<a n:href="interpret, $interpret->id, 'book_id'"{ifCurrent Audio:interpret, $interpret->id, 'book_id'} class="current"{/ifCurrent}>Témat</a>

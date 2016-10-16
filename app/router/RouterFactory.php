@@ -90,10 +90,10 @@ class RouterFactory
 			),
 		));
 		
-		$router[] = new Route('audio/book?book_id=<book_id>', 'Audio:book');		
+		$router[] = new Route('audio/book?book_id=<book_id>', 'Audio:book');
 		$router[] = new Route('audio/srimad-bhagavatam', 'Audio:sb');
 		$router[] = new Route('audio/caitanya-caritamrta', 'Audio:cc');
-		$router[] = new Route('audio/nezarazene', 'Audio:unclasified');		
+		$router[] = new Route('audio/nezarazene', 'Audio:unclasified');
 		
 		$router[] = new Route('audio/<collection_id>', array(
 			'presenter' => 'Audio',
@@ -104,15 +104,23 @@ class RouterFactory
 			),
 		));
 				
-		$router[] = new Route('audio/<type>?seskupit=<group_by>', array(
+		$router[] = new Route('audio/sankirtanove-lekce?seskupit=<group_by>', array(
 			'presenter' => 'Audio',
 			'action' => 'byType',
-			'type' => array(
+			'type' => 'sankirtan',
+			'group_by' => array(
 				Route::FILTER_TABLE => array(
-					'sankirtanove-lekce' => 'sankirtan',
-					'seminare' => 'seminar'
+					'tema' => 'book_id',
+					'cas_pridani' => 'time_created',
+					'casu' => 'audio_year'
 				)
 			),
+		));
+
+		$router[] = new Route('audio/seminare?seskupit=<group_by>', array(
+			'presenter' => 'Audio',
+			'action' => 'byType',
+			'type' => 'seminar',
 			'group_by' => array(
 				Route::FILTER_TABLE => array(
 					'tema' => 'book_id',

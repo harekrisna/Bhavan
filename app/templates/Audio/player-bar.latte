@@ -28,7 +28,7 @@
 	{else}
 	<div class="hidder">
 		<div class="download-link"><a href="{link downloadMp3, $lecture->id}"></a></div>		
-		<audio src="{$basePath}/mp3/{$lecture->audio_interpret->mp3_folder}/{$lecture->mp3_file}" type="audio/mp3" controls="controls" preload="none"></audio>
+		<audio src="{$basePath}/mp3/{$lecture->audio_interpret->mp3_folder}/{$lecture->mp3_file}" type="audio/mp3" controls="controls" preload="none" data-id="{$lecture->id}"></audio>
 	</div>
 	{/if}
 </div>	  			

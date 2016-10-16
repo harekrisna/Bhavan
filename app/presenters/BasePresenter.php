@@ -17,14 +17,19 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     protected $galery;
     protected $photo;
     protected $audio;
+    protected $audio_playcount;
+    protected $audio_downloadcount;    
     protected $collection;    
     protected $book;
     protected $page;
+    
+    protected $httpRequest;
 	    
 	protected function startup()	{
 		parent::startup();
 		$container = $this->presenter->context->getService("container");
 		$httpRequest = $container->getByType('Nette\Http\Request');
+		$this->httpRequest = $httpRequest;
 		$host = $httpRequest->getUrl()->getHost();
 		if($host == "www.prabhupadbhavan.cz" || $host == "prabhupadbhavan.cz") {
 			$this->redirectUrl("http://www.bhavan.cz");
@@ -37,6 +42,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         $this->galery = $this->context->getService("galery");
         $this->photo = $this->context->getService("photo");
         $this->audio = $this->context->getService("audio");
+        $this->audio_playcount = $this->context->getService("audio_playcount");
+        $this->audio_downloadcount = $this->context->getService("audio_downloadcount");                
         $this->collection = $this->context->getService("audio_collection");
         $this->book = $this->context->getService("book");
         $this->page = $this->context->getService("page");

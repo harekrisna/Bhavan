@@ -5,3 +5,6 @@ temp/cache
 npm-debug.log
 .DS_Store
 temp/btfj.dat
+log/
+
+log/exception.log

@@ -30,6 +30,8 @@ services:
 	galery: App\Model\Galery
 	photo: App\Model\Photo
 	audio: App\Model\Audio
+	audio_playcount: App\Model\AudioPlaycount
+	audio_downloadcount: App\Model\AudioDownloadcount	
 	book: App\Model\Book
 	router: App\RouterFactory::createRouter
 	page: App\Model\Page

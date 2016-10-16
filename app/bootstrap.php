@@ -11,7 +11,7 @@ $configurator->setDebugMode(array('94.112.79.165',
 								  '78.45.37.34',
 								  '89.103.182.236')
 								 ); // enable for your remote IP
-$configurator->enableDebugger(__DIR__ . '/../log', "bh.majkl@gmail.com");
+$configurator->enableDebugger(__DIR__ . '/../log');
 
 $configurator->setTempDirectory(__DIR__ . '/../temp');
 

@@ -173,7 +173,7 @@ class AudioPresenter extends BasePresenter	{
 	}
 
 	/* Pro semináře, sankírtanové lekce a varnasrama */
-	public function renderByType($type, $group_by = 'audio_interpret_id') {
+	public function renderByType($type, $group_by) {
 		$groups = $this->audio->findBy([$type => 1])
 							  ->group($group_by);
 							  
@@ -385,12 +385,34 @@ class AudioPresenter extends BasePresenter	{
 		$this->template->isMobile = $detect->isMobile();
 	}
 	
-	
 	public function actionDownloadMp3($id) {
 		Debugger::fireLog($id);
 		if (!$audio = $this->audio->get($id))
             throw new Nette\Application\BadRequestException;
 
 		$this->sendResponse(new FileResponse("./mp3/".$audio->audio_interpret->mp3_folder."/".$audio->mp3_file));
+	}
+	
+	public function actionIncreaseMp3Playcount($id) {
+		$ip = $this->httpRequest->getRemoteAddress();
+		$record = $this->audio_playcount->findBy(['audio_id' => $id,
+												  'ip' => $ip])
+									    ->fetch();
+		if($record) {
+			$now = new Nette\Utils\DateTime;
+			$now = $now->getTimestamp();
+			$last_playback = $record->last_playback->getTimestamp();
+			if(($now - $last_playback) > 2629800) { // lekce byla přehrána déle než před měsícem
+				$record->update(['last_playback' => new Nette\Utils\DateTime,
+								 'playcount' => new SqlLiteral("playcount + 1")]);
+			}
+		}	
+		else {
+			$this->audio_playcount->insert(['audio_id' => $id,
+										    'ip' => $ip]);
+		}	
+										
+		$this->sendPayload();
+		$this->terminate();
 	}
 }

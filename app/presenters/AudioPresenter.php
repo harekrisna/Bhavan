@@ -174,6 +174,7 @@ class AudioPresenter extends BasePresenter	{
 
 	/* Pro semináře, sankírtanové lekce a varnasrama */
 	public function renderByType($type, $group_by) {
+		Debugger::fireLog($group_by);
 		$groups = $this->audio->findBy([$type => 1])
 							  ->group($group_by);
 							  
@@ -273,21 +274,25 @@ class AudioPresenter extends BasePresenter	{
 			$group_by_column = "book_id";
 			$groups->order('book.id ASC')
 				   ->group($group_by_column);
-		}
-		elseif($group_by == "time_created") {
-			$group_by_column = "time_created";
-			$groups->order('time_created DESC');
-			$groups->group('YEAR(time_created)');
-		}					
+		}				
 			
 		$lectures = [];
 		
 									  
 		foreach($groups as $group) {			
 			if($group_by == 'time_created') {
-				$lectures[$group->id] = $this->audio->findBy(['audio_interpret_id' => $interpret_id, 
-											  				  "YEAR(".$group_by_column.")" => date('Y', strtotime($group->$group_by_column))])
-											  		->order('time_created DESC'); 
+										  		
+				$this->template->last_30_days = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
+															->where(new SqlLiteral("`time_created` BETWEEN CURDATE() - INTERVAL 30 DAY AND CURDATE()"))
+															->order('time_created DESC');
+													
+				$this->template->last_60_days = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
+															->where(new SqlLiteral("`time_created` BETWEEN (CURDATE() - INTERVAL 60 DAY) AND (CURDATE() - INTERVAL 30 DAY)"))
+															->order('time_created DESC');													
+				
+				$lectures = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
+														->where(new SqlLiteral("`time_created` < CURDATE() - INTERVAL 60 DAY"))
+														->order('time_created DESC');
 			}
 			else {
 				$lectures[$group->id] = $this->audio->findBy(['audio_interpret_id' => $interpret_id, 

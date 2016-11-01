@@ -2,8 +2,8 @@
 {block content}
 {include breadcrumb_nav, backlinks => $backlinks}
 <h1>{$actuality->title}</h1>
-<div>
-	<img n:if="$actuality->article_image" class="article_image" src="{$basePath}/images/actuality/{$actuality->article_image}" />
+<section class="actuality-detail">
+	{* <img n:if="$actuality->article_image" class="actuality-image" src="{$basePath}/images/actuality/{$actuality->article_image}" /> *}
 	{!$actuality->description}
-</div>
-{/block}
+</section>
+{/block}	

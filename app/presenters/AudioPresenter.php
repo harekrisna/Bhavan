@@ -38,7 +38,7 @@ class AudioPresenter extends BasePresenter	{
 		$detect = new Mobile_Detect;
 		$this->template->isMobile = $detect->isMobile();		
 		$this->template->last_30_days = $this->audio->findAll()
-													->where(new SqlLiteral("`time_created` BETWEEN CURDATE() - INTERVAL 30 DAY AND (CURDATE() + 1)"))
+													->where(new SqlLiteral("`time_created` BETWEEN (CURDATE() - INTERVAL 30 DAY) AND (CURDATE() + 0)"))
 													->order('time_created DESC');
 													
 		$this->template->last_60_days = $this->audio->findAll()
@@ -277,14 +277,16 @@ class AudioPresenter extends BasePresenter	{
 		}				
 			
 		$lectures = [];
-		
 									  
 		foreach($groups as $group) {			
 			if($group_by == 'time_created') {
 										  		
-				$this->template->last_30_days = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
-															->where(new SqlLiteral("`time_created` BETWEEN CURDATE() - INTERVAL 30 DAY AND (CURDATE() + 1)"))
+				$last_30_days = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
+															->where(new SqlLiteral("`time_created` BETWEEN CURDATE() - INTERVAL 30 DAY AND (CURDATE() + 0)"))
 															->order('time_created DESC');
+															
+				$this->template->last_30_days = $last_30_days;
+				
 													
 				$this->template->last_60_days = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
 															->where(new SqlLiteral("`time_created` BETWEEN (CURDATE() - INTERVAL 60 DAY) AND (CURDATE() - INTERVAL 30 DAY)"))
@@ -407,16 +409,41 @@ class AudioPresenter extends BasePresenter	{
 			$now = new Nette\Utils\DateTime;
 			$now = $now->getTimestamp();
 			$last_playback = $record->last_playback->getTimestamp();
-			if(($now - $last_playback) > 2629800) { // lekce byla přehrána déle než před měsícem
+			if(($now - $last_playback) > 604800) { // lekce byla přehrána déle než před týdnem
 				$record->update(['last_playback' => new Nette\Utils\DateTime,
 								 'playcount' => new SqlLiteral("playcount + 1")]);
 			}
 		}	
 		else {
-			$this->audio_playcount->insert(['audio_id' => $id,
-										    'ip' => $ip]);
+			$record = $this->audio_playcount->insert(['audio_id' => $id,
+										    		  'ip' => $ip]);
 		}	
-										
+				
+		$this->payload->playcount = $record->playcount;							    							
+		$this->sendPayload();
+		$this->terminate();
+	}
+	
+	public function actionIncreaseMp3Download($id) {
+		$ip = $this->httpRequest->getRemoteAddress();
+		$record = $this->audio_downloadcount->findBy(['audio_id' => $id,
+												 	  'ip' => $ip])
+									   ->fetch();
+		if($record) {
+			$now = new Nette\Utils\DateTime;
+			$now = $now->getTimestamp();
+			$last_playback = $record->last_download->getTimestamp();
+			if(($now - $last_playback) > 3600) { // lekce byla stažena déle než před hodinou
+				$record->update(['last_download' => new Nette\Utils\DateTime,
+								 'downloadcount' => new SqlLiteral("downloadcount + 1")]);
+			}
+		}	
+		else {
+			$record = $this->audio_downloadcount->insert(['audio_id' => $id,
+										    		 	  'ip' => $ip]);
+		}	
+				
+		$this->payload->downloadcount = $record->downloadcount;							    							
 		$this->sendPayload();
 		$this->terminate();
 	}

@@ -695,11 +695,11 @@ section.actuality-detail {
   margin-top: 19px;
   margin-bottom: 50px;
 }
-section.actuality-detail img.actuality-image {
-  width: 50%;
+section.actuality-detail img {
   border-radius: 70px 0;
-  margin-left: 30px;
-  float: right;
+  margin-bottom: 30px !important;
+  position: relative;
+  top: -80px;
 }
 div.preview_image div {
   width: 100px;

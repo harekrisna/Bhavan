@@ -10,6 +10,8 @@
 	        <th><span>Interpret</span></th>
 	        <th><span>Verš</span></th>
 			<th><span>Typ</span></th>
+			<th><span style="padding: 0">P</span></th>
+			<th><span style="padding: 0">D</span></th>
 	        <th></th>
 		</tr>
     </thead>
@@ -37,6 +39,8 @@
 				<img n:if="$mp3->varnasrama" title="varnášrama a farmy" src="{$basePath}/images/admin/varnasrama-icon.png" />
 				<img n:if="$mp3->audio_collection_id" title="{$mp3->audio_collection->title}" src="{$basePath}/images/admin/collection-icon.png" />
 	        </td>
+	        <td class="center">{$mp3->related('audio_playcount')->sum(playcount)}</td>
+	        <td class="center">{$mp3->related('audio_downloadcount')->sum(downloadcount)}</td>
             <td><a class="button edit" n:href="edit, $mp3->id"></a><a class="button remove" n:href="delete!, $mp3->id"></a></td>
 		</tr>        
     {/foreach}

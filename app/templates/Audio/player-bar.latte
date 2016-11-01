@@ -21,14 +21,16 @@
 		</div>
 	</div>
 	
+	{var douwnloadcount = $lecture->related('audio_downloadcount')->sum(downloadcount)}
+	
 	{if $isMobile}
 	<style>div.audio-player { height: 100px }</style>
-	<audio style="float:left; margin: 5px 15px 0 0;" src="{$basePath}/mp3/{$lecture->audio_interpret->mp3_folder}/{$lecture->mp3_file}" type="audio/mp3" controls="controls" preload="none"></audio>
-	<a style="float:left; color: #61503C; margin-top: 10px;" href="{link downloadMp3, $lecture->id}">Stáhnout soubor</a>
+	<audio style="float:left; margin: 5px 15px 0 0;" src="{$basePath}/mp3/{$lecture->audio_interpret->mp3_folder}/{$lecture->mp3_file}" type="audio/mp3" controls="controls" preload="none" data-id="{$lecture->id}" data-playcount="{$lecture->related('audio_playcount')->sum(playcount)}"></audio>
+	<div style="float:left; color: #61503C; margin-top: 10px;" class="download-link" data-href="{link downloadMp3, $lecture->id}" title="Staženo: {if $douwnloadcount}$douwnloadcount{else}0{/if}">Stáhnout soubor</div>
 	{else}
 	<div class="hidder">
-		<div class="download-link"><a href="{link downloadMp3, $lecture->id}"></a></div>		
-		<audio src="{$basePath}/mp3/{$lecture->audio_interpret->mp3_folder}/{$lecture->mp3_file}" type="audio/mp3" controls="controls" preload="none" data-id="{$lecture->id}"></audio>
+		<div class="download-link" data-href="{link downloadMp3, $lecture->id}" title="Staženo: {if $douwnloadcount}{$douwnloadcount}{else}0{/if}"><div></div></div>		
+		<audio src="{$basePath}/mp3/{$lecture->audio_interpret->mp3_folder}/{$lecture->mp3_file}" type="audio/mp3" controls="controls" preload="none" data-id="{$lecture->id}" data-playcount="{$lecture->related('audio_playcount')->sum(playcount)}"></audio>
 	</div>
 	{/if}
-</div>	  			
+</div>

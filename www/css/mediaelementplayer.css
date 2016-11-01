@@ -78,7 +78,7 @@ div.audio-player:last-child {
 	background-image: url('../images/player/download-bg.png');
 }
 
-.hidder .download-link a {
+.hidder .download-link div {
 	display: block;
 	width: 16px;
 	height: 16px;
@@ -87,6 +87,7 @@ div.audio-player:last-child {
 	background-image: url('../images/player/download-arrow.png');
 	background-repeat: no-repeat;
 	background-color: #9F9483;
+	cursor: pointer;
 }
 
 

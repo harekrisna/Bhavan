@@ -51,6 +51,12 @@ div.audio-player:last-child {
 	margin-right: 12px;
 }
 
+.audio-player .collection-text {
+	font-size: 16px;
+	line-height: 2;
+}
+
+
 
 .audio-player .hidder {
 	position: relative;

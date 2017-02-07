@@ -3,6 +3,7 @@
 {/block}
 {block title}Audio{/block}
 {block content}
+{var $displayed_collections = []}
 {include breadcrumb_nav, backlinks => $backlinks}
 <h1>Nezařazené</h1>
 <nav id="audio_nav">
@@ -14,7 +15,13 @@
 <section class="lectures-group">
 	{include group-header.latte, group => $group, group_by => $group_by}
 	{foreach $lectures[$group->id] as $lecture} 
-		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => ($group_by == 'audio_year') ? true}
+		{if $lecture->audio_collection_id}
+			{continueIf in_array($lecture->audio_collection_id, $displayed_collections)}
+			{include collection-link.latte, lecture => $lecture, show_interpret_abbr => ($group_by == 'audio_year') ? true, collection_count => $collections_count[$lecture->audio_collection_id]}
+			{var $displayed_collections[] = $lecture->audio_collection_id}
+		{else}
+			{include player-bar.latte, lecture => $lecture, show_interpret_abbr => ($group_by == 'audio_year') ? true}
+		{/if}		
 	{/foreach}
 </section>
 {/foreach}

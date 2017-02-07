@@ -3,6 +3,7 @@
 {/block}
 {block title}Audio{/block}
 {block content}
+{var $displayed_collections = []}
 {include breadcrumb_nav, backlinks => $backlinks}
 <h1>Přednášky z roku {$year}</h1>
 <nav id="audio_nav">
@@ -17,7 +18,13 @@
 		<h2>Sankírtanové lekce</h2>
 	</div>
 	{foreach $sankirtan as $lecture}
-		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true, group_by => $group_by}
+		{if $lecture->audio_collection_id}
+			{continueIf in_array($lecture->audio_collection_id, $displayed_collections)}
+			{include collection-link.latte, lecture => $lecture, show_interpret_abbr => true, collection_count => $collections_count[$lecture->audio_collection_id]}
+			{var $displayed_collections[] = $lecture->audio_collection_id}
+		{else}
+			{include player-bar.latte, show_interpret_abbr => true, lecture => $lecture}
+		{/if}
 	{/foreach}
 </section>
 
@@ -27,7 +34,13 @@
 		<h2>Varnášrama a farmy</h2>
 	</div>
 	{foreach $varnasrama as $lecture}
-		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true, group_by => $group_by}
+		{if $lecture->audio_collection_id}
+			{continueIf in_array($lecture->audio_collection_id, $displayed_collections)}
+			{include collection-link.latte, lecture => $lecture, show_interpret_abbr => true, collection_count => $collections_count[$lecture->audio_collection_id]}
+			{var $displayed_collections[] = $lecture->audio_collection_id}
+		{else}
+			{include player-bar.latte, show_interpret_abbr => true, lecture => $lecture}
+		{/if}
 	{/foreach}
 </section>
 
@@ -37,7 +50,13 @@
 		<h2>Semináře</h2>
 	</div>
 	{foreach $seminars as $lecture}
-		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true, group_by => $group_by}
+		{if $lecture->audio_collection_id}
+			{continueIf in_array($lecture->audio_collection_id, $displayed_collections)}
+			{include collection-link.latte, lecture => $lecture, show_interpret_abbr => true, collection_count => $collections_count[$lecture->audio_collection_id]}
+			{var $displayed_collections[] = $lecture->audio_collection_id}
+		{else}
+			{include player-bar.latte, show_interpret_abbr => true, lecture => $lecture}
+		{/if}
 	{/foreach}
 </section>
 {/if}
@@ -47,7 +66,13 @@
 <section class="lectures-group">
 	{include group-header.latte, group => $group, group_by => $group_by}	
 	{foreach $lectures[$group->id] as $lecture}
-		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => ($group_by == 'book_id') ? true, group_by => $group_by}
+		{if $lecture->audio_collection_id}
+			{continueIf in_array($lecture->audio_collection_id, $displayed_collections)}
+			{include collection-link.latte, lecture => $lecture, show_interpret_abbr => ($group_by == 'book_id') ? true, collection_count => $collections_count[$lecture->audio_collection_id]}
+			{var $displayed_collections[] = $lecture->audio_collection_id}
+		{else}
+			{include player-bar.latte, show_interpret_abbr => ($group_by == 'book_id') ? true, lecture => $lecture}
+		{/if}
 	{/foreach}
 </section>
 {/foreach}
@@ -56,7 +81,13 @@
 <section n:if="count($unclasified)" class="lectures-group">
 	{include group-header.latte, group_by => $group_by}
 	{foreach $unclasified as $lecture}
-		{include player-bar.latte, lecture => $lecture, show_interpret_abbr => true, group_by => $group_by}
+		{if $lecture->audio_collection_id}
+			{continueIf in_array($lecture->audio_collection_id, $displayed_collections)}
+			{include collection-link.latte, lecture => $lecture, show_interpret_abbr => true, collection_count => $collections_count[$lecture->audio_collection_id]}
+			{var $displayed_collections[] = $lecture->audio_collection_id}
+		{else}
+			{include player-bar.latte, show_interpret_abbr => true, lecture => $lecture}
+		{/if}
 	{/foreach}
 </section>
 {/if}

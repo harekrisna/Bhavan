@@ -5,11 +5,7 @@
 	{if isset($title_only_text) && $title_only_text == true}
 		<div class="title" n:href="singleAudio, $lecture->id">{$lecture->title}</div>
 	{else}
-		{if $lecture->audio_collection_id}
-		<a class="title" n:href="audioCollection, $lecture->audio_collection_id">{$lecture->title}</a>
-		{else}
 		<a class="title" n:href="singleAudio, $lecture->id">{$lecture->title}</a>
-		{/if}
 	{/if}
 		<div class="place-time">
 			{$lecture->place} 

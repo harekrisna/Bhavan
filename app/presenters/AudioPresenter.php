@@ -68,6 +68,17 @@ class AudioPresenter extends BasePresenter	{
 	public function renderYear($year, $group_by = 'audio_interpret_id') {
 		$groups = $this->audio->findBy(['audio_year' => $year])
 							  ->group($group_by);
+							  
+  		$collections = $this->audio->findBy(['audio_year' => $year])
+  								   ->select("COUNT('*') AS count, audio_collection_id")
+								   ->group('audio_collection_id');
+		
+		$collections_count = [];								   
+		foreach($collections as $collection) {
+			$collections_count[$collection->audio_collection_id] = $collection->count;
+		}
+		
+		$this->template->collections_count = $collections_count;
 		$lectures = [];
 									  
 		foreach($groups as $group) {
@@ -136,6 +147,17 @@ class AudioPresenter extends BasePresenter	{
 		$groups = $this->audio->findBy(['book_id' => $book_id])
 							  ->group($group_by)
   							  ->order('audio_year DESC');
+  							  
+  		$collections = $this->audio->findBy(['book_id' => $book_id])
+  								   ->select("COUNT('*') AS count, audio_collection_id")
+								   ->group('audio_collection_id');
+		
+		$collections_count = [];								   
+		foreach($collections as $collection) {
+			$collections_count[$collection->audio_collection_id] = $collection->count;
+		}
+
+		$this->template->collections_count = $collections_count;							  	  
 		$lectures = [];
 									  
 		foreach($groups as $group) {
@@ -174,9 +196,19 @@ class AudioPresenter extends BasePresenter	{
 
 	/* Pro semináře, sankírtanové lekce a varnasrama */
 	public function renderByType($type, $group_by) {
-		Debugger::fireLog($group_by);
 		$groups = $this->audio->findBy([$type => 1])
 							  ->group($group_by);
+		
+		$collections = $this->audio->findBy([$type => 1])
+  								   ->select("COUNT('*') AS count, audio_collection_id")
+								   ->group('audio_collection_id');
+		
+		$collections_count = [];								   
+		foreach($collections as $collection) {
+			$collections_count[$collection->audio_collection_id] = $collection->count;
+		}
+
+		$this->template->collections_count = $collections_count;	
 							  
 		if($group_by == 'audio_year')
 			$groups->order('audio_year DESC');							  
@@ -202,8 +234,6 @@ class AudioPresenter extends BasePresenter	{
 												->order('audio_year DESC, audio_month DESC, audio_day DESC');
 		}
 		
-
-		
 		$this->template->backlinks = [$this->link('themes') => "Audio"];
 		$this->session->backlinks = [$this->link('themes') => "Audio",
 								     $this->link('byType', $type, $group_by) => $title];
@@ -221,7 +251,19 @@ class AudioPresenter extends BasePresenter	{
 		$groups = $this->audio->findAll()
 							  ->where('book_id IS NULL AND seminar = ? AND sankirtan = ?', array(0, 0))
 							  ->group($group_by);
-  							  
+
+		$collections = $this->audio->findAll()
+							  	   ->where('book_id IS NULL AND seminar = ? AND sankirtan = ?', array(0, 0))
+  								   ->select("COUNT('*') AS count, audio_collection_id")
+								   ->group('audio_collection_id');
+		
+		$collections_count = [];								   
+		foreach($collections as $collection) {
+			$collections_count[$collection->audio_collection_id] = $collection->count;
+		}
+
+		$this->template->collections_count = $collections_count;
+		  							  
 		if($group_by == 'audio_year')
 			$groups->order('audio_year DESC');	
 			
@@ -264,7 +306,18 @@ class AudioPresenter extends BasePresenter	{
 		
 	public function renderInterpret($interpret_id, $group_by = "audio_year") {
 		$groups = $this->audio->findBy(['audio_interpret_id' => $interpret_id]);
-  							  
+  		
+  		$collections = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
+  								   ->select("COUNT('*') AS count, audio_collection_id")
+								   ->group('audio_collection_id');
+		
+		$collections_count = [];								   
+		foreach($collections as $collection) {
+			$collections_count[$collection->audio_collection_id] = $collection->count;
+		}
+		
+		$this->template->collections_count = $collections_count;
+								   
 		if($group_by == "audio_year") {
 			$group_by_column = "audio_year";
 			$groups->order('audio_year DESC')
@@ -281,20 +334,17 @@ class AudioPresenter extends BasePresenter	{
 		foreach($groups as $group) {			
 			if($group_by == 'time_created') {
 										  		
-				$last_30_days = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
+				$this->template->last_30_days = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
 															->where(new SqlLiteral("`time_created` BETWEEN CURDATE() - INTERVAL 30 DAY AND (CURDATE() + 0)"))
 															->order('time_created DESC');
-															
-				$this->template->last_30_days = $last_30_days;
-				
 													
 				$this->template->last_60_days = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
 															->where(new SqlLiteral("`time_created` BETWEEN (CURDATE() - INTERVAL 60 DAY) AND (CURDATE() - INTERVAL 30 DAY)"))
 															->order('time_created DESC');													
 				
 				$lectures = $this->audio->findBy(['audio_interpret_id' => $interpret_id])
-														->where(new SqlLiteral("`time_created` < CURDATE() - INTERVAL 60 DAY"))
-														->order('time_created DESC');
+										->where(new SqlLiteral("`time_created` < CURDATE() - INTERVAL 60 DAY"))
+										->order('time_created DESC');
 			}
 			else {
 				$lectures[$group->id] = $this->audio->findBy(['audio_interpret_id' => $interpret_id, 
@@ -325,15 +375,14 @@ class AudioPresenter extends BasePresenter	{
 		$this->template->backlinks = [$this->link('interprets') => "Audio"];
 		$this->session->backlinks = [$this->link('interprets') => "Audio",
 								     $this->link('interpret', $interpret_id, $group_by) => $interpret->title];
-								     
+									     
 		$this->template->groups = $groups;
 		$this->template->lectures = $lectures;
 		$this->template->interpret = $interpret;
+												   
 		$this->template->group_by = $group_by;
 		$detect = new Mobile_Detect;
    		$this->template->isMobile = $detect->isMobile();
-   		
-   		$this->template->back = "interprets";
 	}
 	
 	public function renderSingleAudio($id) {

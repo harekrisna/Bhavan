@@ -398,7 +398,7 @@ section#links h2:first-child {
   margin: 0 0 50px 8px;
   display: inline-block;
 }
-.links div {
+div.link {
   width: 450px;
   height: 100px;
   border: thin transparent solid;
@@ -406,12 +406,12 @@ section#links h2:first-child {
   float: left;
   margin-bottom: 30px;
 }
-.links div img {
+div.link img {
   float: left;
   width: 100px;
   height: 100px;
 }
-.links div span {
+div.link span {
   margin-left: 26px;
   color: #eb8c3a;
   font-family: "Lora", serif;
@@ -419,7 +419,7 @@ section#links h2:first-child {
   line-height: 30px;
   font-weight: bold;
 }
-.links div a {
+div.link a {
   font-family: "PT Sans", sans-serif;
   margin-left: 128px;
   text-align: left;
@@ -428,7 +428,7 @@ section#links h2:first-child {
   display: block;
   color: #663200;
 }
-.links div p {
+div.link p {
   margin-left: 128px;
   margin-top: 5px;
   font-family: "PT Sans", sans-serif;
@@ -437,11 +437,15 @@ section#links h2:first-child {
   text-align: left !important;
   line-height: 18px;
 }
-.links div:hover a {
+div.link:hover a {
   text-decoration: underline;
 }
-.links div:nth-child(odd) {
+div.link:nth-child(odd) {
   margin-right: 53px;
+}
+div.link.alone {
+  float: none;
+  margin: 25px 0 30px 310px;
 }
 /**********************
        CONSTANTS

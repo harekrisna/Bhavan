@@ -34,7 +34,7 @@ $(function(){
 	});
 	
 	// přičtení počtu stažení
-	$('div.audio-player .download-link').click(function() {
+	$('.audio-player .download-link').on('click tap', function(event) {
 		var audio_player = $(this).closest('div.audio-player');
 		var	audio = $(audio_player).find('audio');
 		var audio_id = $(audio).data('id');
@@ -45,7 +45,7 @@ $(function(){
 	            var downloadcount = payload.downloadcount;
 	            if(downloadcount == "") downloadcount = 0;
 				$(download_link).attr('title', 'Staženo: ' + downloadcount);
-	            window.location.href = $(download_link).data('href');
+	            //window.location.href = $(download_link).data('href');
             }
         );
         

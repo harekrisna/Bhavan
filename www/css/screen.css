@@ -478,11 +478,13 @@ a {
   color: #EB8C3A;
   transition: 0.3s;
 }
-.link-reverse {
+.link-reverse,
+.actuality-detail a {
   color: #EB8C3A;
   transition: 0.3s;
 }
-.link-reverse:hover {
+.link-reverse:hover,
+.actuality-detail a:hover {
   color: #12323D;
   transition: 0.3s;
 }
@@ -931,31 +933,36 @@ section#chose_type > div div {
   margin: 0px auto;
 }
 .footer-container > div {
-  height: 100%;
   float: left;
   text-align: left;
   border-right: 1px #FFFFFF dotted;
 }
 /* blok aktivit v patičce [začátek] */
+/*
 div.activity {
-  padding-right: 20px;
-  height: 107px;
+	padding-right: 20px;
+	height: 107px;
 }
-div.activity ul {
-  list-style: square;
-  padding-left: 23px;
+
+div.activity ul{
+    list-style: square;
+    padding-left: 23px;
 }
-div.activity ul li {
-  color: #EB8C3A;
-  padding-left: 5px;
+
+div.activity ul li{
+    color: #EB8C3A;
+    padding-left: 5px;
 }
-div.activity ul li span,
-div.activity ul li a {
-  color: #FFFFFF;
+
+
+
+div.activity ul li span, div.activity ul li a{
+    color: #FFFFFF;
 }
+*/
 /* blok aktivit v patičce [konec] */
 div.contact {
-  padding: 12px 10px 0px 20px;
+  padding: 12px 40px 0px 30px;
   height: 95px;
   line-height: 17px;
 }
@@ -969,15 +976,20 @@ div.mahamantra {
   width: 160px;
   height: 93px;
   letter-spacing: 1px;
-  padding: 14px 5px 0px 20px;
+  padding: 14px 40px 0px 40px;
+}
+div.mahamantra p {
+  text-align: justify;
+  line-height: 22px;
 }
 div.copyright {
-  padding: 14px 10px 10px 20px;
+  padding: 14px 35px 10px 40px;
+  line-height: 22px;
 }
 div.prabhupad-bhavan {
   width: 187px;
   border: 0px;
-  padding: 14px 0px 0px 15px;
+  padding: 14px 0px 0px 40px;
 }
 div.prabhupad-bhavan p {
   margin: 2px 0 0 9px;

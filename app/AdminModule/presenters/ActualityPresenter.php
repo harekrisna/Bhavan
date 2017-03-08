@@ -26,7 +26,7 @@ final class ActualityPresenter extends BasePresenter {
 
 	public function renderList() {		
 		$this->template->actualities = $this->actuality->getAll()
-													   ->order("date_from ASC");
+													   ->order("date_from DESC");
 	}
 	
 	public function renderDetail($actuality_id) {

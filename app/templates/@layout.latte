@@ -57,6 +57,7 @@
 	        <nav> 
 		        <ul>
 		            <li><a {ifCurrent Homepage:*}class="current" {/ifCurrent}href="{link Homepage:default}">domů</a></li>
+		            <li><a {ifCurrent Actuality:default}class="current" {/ifCurrent}href="{link Actuality:default}">akce</a></li>
 		            <li><a {ifCurrent About:default}class="current" {/ifCurrent}href="{link About:default}">o nás</a></li>
 		            <li><a {ifCurrent Articles:*}class="current" {/ifCurrent}href="{link Articles:default}">články</a></li>
 		            <li><a {ifCurrent Galery:*}class="current" {/ifCurrent}href="{link Galery:galeries}">foto</a></li>
@@ -121,7 +122,7 @@
             $AutoPlay: true,   
 			$ArrowKeyNavigation: false,
             $PauseOnHover: 1,  
-            $SlideWidth: 396,                                 	{* [Optional] Width of every slide in pixels, default value is width of 'slides' container *}
+            $SlideWidth: 462,                                 	{* [Optional] Width of every slide in pixels, default value is width of 'slides' container *}
             $SlideHeight: 30,                                	{* [Optional] Height of every slide in pixels, default value is height of 'slides' container *}
             $SlideshowOptions: {                                {* [Optional] Options to specify and enable slideshow or not *}
                 $Class: $JssorSlideshowRunner$,                 {* [Required] Class to create instance of slideshow *}

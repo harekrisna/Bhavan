@@ -12,14 +12,14 @@
     </div>
     {if $news_count > 0}
     <section id="news" n:class="$max_group_news == 2 ? slim, $max_group_news == 1 ? ultra-slim">
-	    <div n:if="$event_news->count() > 0">
+	    <div>
 		   	<h2><a n:href="Actuality:default">Akce:</a></h2>
 			<div id="events_slider" class="slideshow">
 			    <div u="slides">
 			        <div>
 			        <a n:href="Actuality:sunday">
 					    <img src="{$basePath}/images/actuality/previews/program.jpg" />
-					    <div>Programy pro veřejnost</div>
+					    <div class="bold">Programy pro veřejnost</div>
 					    <span>
 					    	Každou neděli od 14:00 hodin
 						</span>

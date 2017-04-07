@@ -1,6 +1,6 @@
 <?php
-
 namespace App\AdminModule\Presenters;
+
 use Nette,
 	App\Model;
 use Tracy\Debugger;

@@ -1,10 +1,11 @@
- <?php
+<?php
 
 namespace App\Presenters;
 
 use Nette,
 	App\Model;
 use Nette\Diagnostics\Debugger;
+use Nette\Utils\Html;
 
 class ActualityPresenter extends BasePresenter
 {
@@ -22,6 +23,12 @@ class ActualityPresenter extends BasePresenter
 	}
 	
 	public function renderSunday() {
+		$page = $this->page->findBy(['page' => 'sunday'])
+    	                   ->fetch();
+    	                   
+        $html = Html::el()->setHtml($page->text);
+        
+        $this->template->text = $html;		
 		$this->template->backlinks = [$this->link('default') => "Akce"];
 	}	
 }

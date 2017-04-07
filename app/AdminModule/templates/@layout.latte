@@ -31,6 +31,7 @@
 			<span>|</span>
             <nav id="web-menu">
                 <a {ifCurrent Page:form, about}class="current"{/ifCurrent} href="{link Page:form, about}">O nás</a>
+                <a {ifCurrent Page:form, sunday}class="current"{/ifCurrent} href="{link Page:form, sunday}">Sunday</a>
             </nav>
         </div>
         {if $user->isLoggedIn()}

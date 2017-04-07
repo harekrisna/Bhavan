@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 namespace App\Presenters;
 
@@ -25,3 +25,4 @@ class ActualityPresenter extends BasePresenter
 		$this->template->backlinks = [$this->link('default') => "Akce"];
 	}	
 }
+ 
